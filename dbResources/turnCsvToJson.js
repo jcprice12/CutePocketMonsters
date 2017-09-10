@@ -2,9 +2,9 @@ var fs = require("fs");
 var path = require("path");
 
 module.exports = function(fileName){
-    var data = fs.readFileSync(fileName, 'utf8');
+    var data = fs.readFileSync(path.join(__dirname,fileName), 'utf8');
+    var seeds = [];
     if(data){
-        var seeds = [];
         var nameOfCols = [];
         var lineCounter = 0;
         var recordIndex = 0;
@@ -53,6 +53,7 @@ module.exports = function(fileName){
                 }
             }
         }
+        
         var myJSON = JSON.stringify(seeds);
         var outputFile = Date.now() +  "_" + path.parse(fileName).name + ".json";
         fs.writeFile(path.join(__dirname, "output", outputFile), myJSON, 'utf8', function (err) {
@@ -62,5 +63,6 @@ module.exports = function(fileName){
             console.log("The file was saved!");
         }); 
     }
+    return seeds;
     
 };
