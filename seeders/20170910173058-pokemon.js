@@ -4,17 +4,14 @@ var converter = require("../dbResources/turnCsvToJson.js");
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Pokemon', converter("pokemon_alopez247.csv"), {});
+    return converter("pokemon_alopez247.csv").then(function(data){
+      return queryInterface.bulkInsert('Pokemon', data, {});
+    }).catch(function(err){
+      throw err;
+    });
   },
 
   down: function (queryInterface, Sequelize) {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('Person', null, {});
-    */
-    return queryInterface.bulkDelete('Pokemon');
+    return queryInterface.bulkDelete('Pokemon', null, {});
   }
 };

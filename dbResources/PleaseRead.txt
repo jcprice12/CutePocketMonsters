@@ -1,0 +1,10 @@
+To reset the db and populate it, do the following:
+
+### MAKE SURE YOUR CONFIG FILE MATCHES YOUR LOCAL CONFIGURATION
+
+1.) run the schema file that can find in this directory (this will drop the database and make it again)
+2.) run "node server.js" while in the root folder of the project (this will sync the database with the models defined in the models/ folder)
+3.) run "sequelize db:seed:all" while in the root directory of the project to run the seed scripts inside the seeders/ folder
+    NOTE: you will need to have the mysql2 package installed globally for this command to work. To install it globally, do "npm install mysql2 -g" in your bash terminal
+    (this command can be executed while you are in any directory).
+    NOTE: To undo the seeding, run "sequelize:seed:undo:all" while in the root directory of the project
