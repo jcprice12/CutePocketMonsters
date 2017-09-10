@@ -4,7 +4,11 @@ var converter = require("../dbResources/turnCsvToJson.js");
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Pokemon', converter("pokemon_alopez247.csv"), {});
+    return converter("pokemon_alopez247.csv").then(function(data){
+      return queryInterface.bulkInsert('Pokemon', data, {});
+    }).catch(function(err){
+      throw err;
+    });
   },
 
   down: function (queryInterface, Sequelize) {
