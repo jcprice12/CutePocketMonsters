@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "queenof7",
+    "password": "1998",
     "database": "pokemon_db",
     "local host": "3306",
     "dialect": "mysql"
