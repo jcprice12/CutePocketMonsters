@@ -18,9 +18,13 @@ var getPassport = function(){
 }
 
 var checkUser = function(req, res, next){
+    console.log("request on path: " + req.path);
+    console.log("Checking user...");
     if (req.user) {
+        console.log("User " +req.user.dataValues.id + " is logged in");
         next();
     } else {
+        console.log("User not logged in");
         res.redirect('/login');
     }
 }

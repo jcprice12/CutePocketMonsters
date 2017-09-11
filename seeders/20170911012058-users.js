@@ -11,11 +11,18 @@ function hashPassword(pass){
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-    return queryInterface.bulkInsert('Users', [{
-      username: "test",
-      password: hashPassword("password"),
-      email: "test@test.com"
-    }], {});
+    return queryInterface.bulkInsert('Users', [
+      {
+        username: "test",
+        password: hashPassword("password"),
+        email: "test@test.com"
+      },
+      {
+        username: "best",
+        password: hashPassword("password"),
+        email: "best@best.com"
+      },
+    ], {});
   },
 
   down: function (queryInterface, Sequelize) {

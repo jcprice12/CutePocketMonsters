@@ -44,6 +44,11 @@ router.post("/login", serverFile.getPassport().authenticate('local', { failureRe
     });
 });
 
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
+});
+
 router.get("/register", function(req, res){
     var hbsObject = {}
     res.render("register", hbsObject);

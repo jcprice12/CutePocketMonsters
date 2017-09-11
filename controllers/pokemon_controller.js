@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var connectEnsureLogin = require("connect-ensure-login");
+var serverFile = require("../server.js");
 
 // Import models
 var db = require("../models");
