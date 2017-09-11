@@ -20,7 +20,6 @@ router.get("/login", function(req, res) {
 });
 
 router.post("/login", serverFile.getPassport().authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-    console.log(req.user);
     var id = req.user.dataValues.id;
     db.User.findOne({
         where : {
@@ -34,6 +33,7 @@ router.post("/login", serverFile.getPassport().authenticate('local', { failureRe
         }
     }).then(function(userPokemon){
         if(userPokemon.Pokemons && userPokemon.Pokemons.length > 0){
+            console.log("I have pokemon");
             res.redirect("/users/" + id);
         } else {
             res.redirect("/");

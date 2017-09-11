@@ -1,10 +1,11 @@
 var express = require("express");
 var router = express.Router();
 var serverFile = require("../server.js");
+var connectEnsureLogin = require("connect-ensure-login");
 // Import models
 var db = require("../models");
 
-router.get("/users/:id", function(req, res) {
+router.get("/users/:id", serverFile.checkUser, function(req, res) {
     db.User.findOne({
         where : {
             "id" : req.params.id
@@ -16,7 +17,6 @@ router.get("/users/:id", function(req, res) {
             } 
         }
     }).then(function(userPokemon){
-        console.log(userPokemon);
         var hbsObject = userPokemon;
         res.render("backpack", hbsObject);
     });
