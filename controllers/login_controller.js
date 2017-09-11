@@ -20,7 +20,28 @@ router.get("/login", function(req, res) {
 });
 
 router.post("/login", serverFile.getPassport().authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-    res.redirect('/');
+    console.log(req.user);
+    var id = req.user.dataValues.id;
+    db.User.findOne({
+        where : {
+            "id" : id
+        },
+        include : {
+            model : db.Pokemon,
+            through : {
+                attributes : ['pokemonNumber']
+            } 
+        }
+    }).then(function(userPokemon){
+        if(userPokemon.Pokemons && userPokemon.Pokemons.length > 0){
+            res.redirect("/users/" + id);
+        } else {
+            res.redirect("/");
+        }
+    }).catch(function(err){
+        console.log(err);
+        res.redirect('/');
+    });
 });
 
 router.get("/register", function(req, res){

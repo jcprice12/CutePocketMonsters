@@ -90,9 +90,11 @@ app.set("view engine", "handlebars");
 // Import routes and give the server access to them.
 var routes = require("./controllers/pokemon_controller.js");
 var loginRoutes = require("./controllers/login_controller.js");
+var userRoutes = require("./controllers/users_controller.js");
 //root route is / (all other routes specified by the variable 'routes' will be derived from here)
 app.use("/", routes);
 app.use("/", loginRoutes);
+app.use("/", userRoutes);
 
 //sync the db and start listening for client requests
 db.sequelize.sync().then(function() {
