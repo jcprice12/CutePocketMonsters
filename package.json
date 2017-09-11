@@ -22,8 +22,10 @@
   "homepage": "https://github.com/jcprice12/CutePocketMonsters#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "connect-ensure-login": "^0.1.1",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.5",
     "method-override": "^2.3.9",
     "mysql2": "^1.4.2",
     "passport": "^0.4.0",

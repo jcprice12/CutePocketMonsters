@@ -7,6 +7,7 @@ var db = require("./models");
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 var password_hash = require("password-hash");
+var session = require("express-session");
 
 //variables
 var PORT = process.env.PORT || 8080;
@@ -16,8 +17,21 @@ var getPassport = function(){
     return passport;
 }
 
+var checkUser = function(req, res, next){
+    console.log("request on path: " + req.path);
+    console.log("Checking user...");
+    if (req.user) {
+        console.log("User " +req.user.dataValues.id + " is logged in");
+        next();
+    } else {
+        console.log("User not logged in");
+        res.redirect('/login');
+    }
+}
+
 module.exports = {
-    "getPassport" : getPassport
+    "getPassport" : getPassport,
+    "checkUser" : checkUser
 }
 
 // Configure the local strategy for use by Passport.
@@ -54,7 +68,9 @@ passport.use(new Strategy(function(username, password, cb) {
 // serializing, and querying the user record by ID from the database when
 // deserializing.
 passport.serializeUser(function(user, cb) {
-    cb(null, user.id);
+    console.log("serializing");
+    console.log(user);
+    cb(null, user.dataValues.id);
 });
 
 passport.deserializeUser(function(id, cb) {
@@ -77,6 +93,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 //passport stuff
+app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -91,10 +108,13 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/pokemon_controller.js");
 var loginRoutes = require("./controllers/login_controller.js");
 var userRoutes = require("./controllers/users_controller.js");
-//root route is / (all other routes specified by the variable 'routes' will be derived from here)
+
 app.use("/", routes);
 app.use("/", loginRoutes);
 app.use("/", userRoutes);
+app.get("*", function(req, res){
+    res.redirect("/");
+});
 
 //sync the db and start listening for client requests
 db.sequelize.sync().then(function() {
