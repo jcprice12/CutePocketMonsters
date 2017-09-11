@@ -1,10 +1,7 @@
 {
   "development": {
-    "username": "root",
-    "password": "root",
-    "database": "pokemon_db",
-    "local host": "3306",
-    "dialect": "mysql"
+    "use_env_variable" : "LOCAL_DB_CONNECTION",
+    "dialect" : "mysql"
   },
   "test": {
     "username": "root",
