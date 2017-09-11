@@ -2,7 +2,7 @@
 var password_hash = require("password-hash");
 
 function hashPassword(pass){
-  var hash = password_hash.generate("password", {
+  var hash = password_hash.generate(pass, {
     algorithm : 'sha256',
     saltLength : 16,
   });

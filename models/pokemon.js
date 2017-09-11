@@ -173,7 +173,10 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     Pokemon.associate = function(models){
-        
+        Pokemon.belongsToMany(models.User, {
+            through: models.UserPokemon,
+            foreignKey: 'pokemonNumber'
+        });
     }
 
     return Pokemon;

@@ -28,7 +28,10 @@ module.exports = function(sequelize, DataTypes) {
     });
 
     User.associate = function(models){
-        
+        User.belongsToMany(models.Pokemon, {
+            through : models.UserPokemon,
+            foreignKey: 'userId'
+        });
     }
 
     return User;
