@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "queenof7",
     "database": "pokemon_db",
-    "host": "127.0.0.1",
+    "local host": "3306",
     "dialect": "mysql"
   },
   "test": {
