@@ -18,7 +18,7 @@ input {
     width: 100%;
 }
 
-form {
+.myForm {
     position: absolute;
     left: 30%;
     top: 28%;
@@ -44,6 +44,12 @@ h1{
 }
 
 h2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    color: black;
+}
+
+h3{
     font-family: 'Open Sans', sans-serif;
     font-size: 30px;
     color: black;
@@ -215,4 +221,13 @@ table {
 
 .myLinksDiv {
     margin-bottom:8px;
+}
+
+.myTable{
+    background-color: #f2f2f2;
+}
+
+.myEditContainer{
+    background: #f2f2f2;
+    border-radius: 4px;
 }
