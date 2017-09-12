@@ -36,8 +36,6 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res) {
             },
             group : ["id"]
         }).then(function(users){
-            //console.log(users);
-            console.log(req.user);
             var hbsObject = {
                 "sessionUser" : req.user,
                 "users" : users,

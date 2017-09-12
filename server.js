@@ -108,6 +108,7 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/pokemon_controller.js");
 var loginRoutes = require("./controllers/login_controller.js");
 var userRoutes = require("./controllers/users_controller.js");
+var surveyRoutes = require("./controllers/surveys_controller.js");
 
 app.use(function(req, res, next) {
     res.set('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
@@ -116,6 +117,7 @@ app.use(function(req, res, next) {
 app.use("/", routes);
 app.use("/", loginRoutes);
 app.use("/", userRoutes);
+app.use("/", surveyRoutes);
 app.get("*", function(req, res){
     res.redirect("/");
 });
