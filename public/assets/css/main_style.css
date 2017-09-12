@@ -4,19 +4,27 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: "Courier New", Courier, monospace;
+  text-transform: capitalize;
 }
 
 label {
     font-size: 28px;
+    width: 100%;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
+}
+
+input {
+    width: 100%;
 }
 
 form {
     position: absolute;
-    left: 40%;
+    left: 30%;
     top: 28%;
+    width: 40%;
     text-align: center;
+    margin-top: 10px;
 }
 
 h1{
@@ -24,26 +32,41 @@ h1{
     width: 50%;
     left: 25%;
     text-align: center;
-    font-family: 'Open Sans', sans-serif;
-    color: black;
+    color: red;
     background-color: white;
     padding: 20px;
-    border-style: solid;
-    border-width: 10px;
-    border-color: red;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 2px solid white;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
 }
 
-#submit {
+.submit {
     background-color: blue;
+    font-size: 16px;
     color: white;
-    font-family: 'Open Sans', sans-serif;
     padding: 10px;
-    margin: 10px;
+    width: 50%;
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
 }
 
 input {
-    border-radius: 8px;
+    border-radius: 5px;
+    border: 1px solid white;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
     height: 50px;
     width: 300px;
     font-size: 20px;
@@ -55,13 +78,17 @@ input {
     color: blue;
     position: absolute;
     top: 38%;
-    left: 47%;
+    left: 30%;
     padding: 10px;
-    border-radius: 5px;
     font-size: 24px;
-    border-style: solid;
-    border-color: green;
-    border-width: 5px;
+    width: 40%;
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid green;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
 }
 
 #registerLink {
@@ -69,15 +96,41 @@ input {
     color: blue;
     position: absolute;
     top: 53%;
-    left: 42%;
+    left: 30%;
     padding: 10px;
-    border-radius: 5px;
     font-size: 24px;
-    border-style: solid;
-    border-color: green;
     border-width: 5px;
+    width: 40%;
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid green;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
 }
 
-#loginLink:hover, #registerLink:hover{
-    opacity: .7;
+#carrot1, #carrot2, .carrot3 {
+    display: none;
+}
+    
+#loginLink:hover #carrot1 {
+    display: inline;
+}
+
+#registerLink:hover #carrot2 {
+    display: inline;
+}
+
+.submit:hover .carrot3 {
+    display:inline;
+}
+
+
+#myCarousel {
+    position: absolute;
+    top: 25%;
+    width: 90%;
+    height: 60%;
+    left: 5%;
 }
