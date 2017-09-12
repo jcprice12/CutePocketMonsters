@@ -14,11 +14,11 @@
                 </thead>
                 <tbody>
                     {{#each users}}
-                        <a href="google.com"><tr class="myTr" data-userId={{this.dataValues.id}}>
+                        <tr onclick="location.href='/users/{{this.dataValues.id}}'" class="myTr" data-userId={{this.dataValues.id}}>
                             <td>{{this.dataValues.username}}</td>
                             <td>{{this.dataValues.email}}</td>
                             <td>{{this.dataValues.number_of_pokemon}}</td>
-                        </tr></a>
+                        </tr>
                     {{/each}}  
                 </tbody>
             </table>
@@ -26,5 +26,7 @@
     </div>
 </div>
 <script>
-    
+    $(document).ready(function(){
+        
+    });
 </script>
