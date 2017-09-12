@@ -18,7 +18,10 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res) {
                 } 
             }
         }).then(function(userPokemon){
-            var hbsObject = userPokemon;
+            var hbsObject = {
+                "userPokemon" : userPokemon,
+                "sessionUser" : req.user
+            }
             res.render("backpack", hbsObject);
         });
     } else {
