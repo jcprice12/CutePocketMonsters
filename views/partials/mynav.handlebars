@@ -1,11 +1,30 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="/">Cute Pokemon</a>
+            <a class="navbar-brand" href="/"> 
+                <span class="navbarcarrotBrand">
+                    <i class="fa fa-caret-right" aria-hidden="true"></i>
+                </span>
+                <span>CUTE POKEMON</span>
+            </a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/survey">Survey</a></li>
-            <li><a href="/users">Trainers</a></li>
+            <li>
+                <a id="surveyLink" href="/survey">
+                    <span class="navbarcarrot1">
+                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    </span>
+                    <span>SURVEY</span>
+                </a>
+            </li>
+            <li>
+                <a id="userLink" href="/users">
+                    <span class="navbarcarrot2">
+                        <i class="fa fa-caret-right" aria-hidden="true"></i>
+                    </span>
+                    <span>TRAINERS</span>
+                </a>
+            </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {{#unless sessionUser}}
@@ -14,7 +33,7 @@
             {{/unless}}
             {{#if sessionUser}}
                 <li><a href="/users/{{sessionUser.dataValues.id}}"><span class="glyphicon glyphicon-user"></span> {{sessionUser.dataValues.username}}</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
             {{/if}}
         </ul>
     </div>

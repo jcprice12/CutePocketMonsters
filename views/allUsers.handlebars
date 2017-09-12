@@ -5,22 +5,43 @@
             <h2>All Trainers</h2>
         </div>
         <div class="panel-body">
+            <div class="myLinksDiv">
+                {{#if similarTrainers}}
+                    <a class="btn btn-default" href="/users">All Trainers</a>
+                {{else}}
+                    <a class="btn btn-default" href="/users/similar/{{sessionUser.dataValues.id}}">Find Similar Trainers</a>
+                {{/if}}
+            </div>
             <table class="table">
                 <thead>
                     <tr>
                         <th>Trainer</th>
                         <th>Email</th>
-                        <th>Number of Pokemon</th>
+                        {{#if similarTrainers}}
+                            <th>Number of Similar Pokemon</th>
+                        {{else}}
+                            <th>Number of Pokemon</th>
+                        {{/if}}
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each users}}
-                        <tr onclick="location.href='/users/{{this.dataValues.id}}'" class="myTr" data-userId={{this.dataValues.id}}>
-                            <td>{{this.dataValues.username}}</td>
-                            <td>{{this.dataValues.email}}</td>
-                            <td>{{this.dataValues.number_of_pokemon}}</td>
-                        </tr>
-                    {{/each}}  
+                    {{#if similarTrainers}}
+                        {{#each similarTrainers}}
+                            <tr onclick="location.href='/users/{{this.id}}'" class="myTr" data-userId={{this.id}}>
+                                <td>{{this.username}}</td>
+                                <td>{{this.email}}</td>
+                                <td>{{this.numberOfSimilarPokemon}}</td>
+                            </tr>
+                        {{/each}}
+                    {{else}}
+                        {{#each users}}
+                            <tr onclick="location.href='/users/{{this.dataValues.id}}'" class="myTr" data-userId={{this.dataValues.id}}>
+                                <td>{{this.dataValues.username}}</td>
+                                <td>{{this.dataValues.email}}</td>
+                                <td>{{this.dataValues.number_of_pokemon}}</td>
+                            </tr>
+                        {{/each}}
+                    {{/if}} 
                 </tbody>
             </table>
         </div>
