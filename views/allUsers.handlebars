@@ -1,0 +1,30 @@
+{{> mynav}}
+<div class="container myPanelContainer">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>All Trainers</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Trainer</th>
+                        <th>Email</th>
+                        <th>Number of Pokemon</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each users}}
+                        <tr onclick="location.href='/users/{{this.dataValues.id}}'" class="myTr" data-userId={{this.dataValues.id}}>
+                            <td>{{this.dataValues.username}}</td>
+                            <td>{{this.dataValues.email}}</td>
+                            <td>{{this.dataValues.number_of_pokemon}}</td>
+                        </tr>
+                    {{/each}}  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+</script>

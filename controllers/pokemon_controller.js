@@ -8,7 +8,9 @@ var db = require("../models");
 
 //route for main page (home page)
 router.get("/", function(req, res) {
-    var hbsObj = {};
+    var hbsObj = {
+        sessionUser : req.user
+    };
     res.render("index", hbsObj);
 });
 
