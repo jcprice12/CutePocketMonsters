@@ -10,17 +10,31 @@
                     <tr>
                         <th>Trainer</th>
                         <th>Email</th>
-                        <th>Number of Pokemon</th>
+                        {{#if similarTrainers}}
+                            <th>Number of Similar Pokemon</th>
+                        {{else}}
+                            <th>Number of Pokemon</th>
+                        {{/if}}
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each users}}
-                        <tr onclick="location.href='/users/{{this.dataValues.id}}'" class="myTr" data-userId={{this.dataValues.id}}>
-                            <td>{{this.dataValues.username}}</td>
-                            <td>{{this.dataValues.email}}</td>
-                            <td>{{this.dataValues.number_of_pokemon}}</td>
-                        </tr>
-                    {{/each}}  
+                    {{#if similarTrainers}}
+                        {{#each similarTrainers}}
+                            <tr onclick="location.href='/users/{{this.id}}'" class="myTr" data-userId={{this.id}}>
+                                <td>{{this.username}}</td>
+                                <td>{{this.email}}</td>
+                                <td>{{this.numberOfSimilarPokemon}}</td>
+                            </tr>
+                        {{/each}}
+                    {{else}}
+                        {{#each users}}
+                            <tr onclick="location.href='/users/{{this.dataValues.id}}'" class="myTr" data-userId={{this.dataValues.id}}>
+                                <td>{{this.dataValues.username}}</td>
+                                <td>{{this.dataValues.email}}</td>
+                                <td>{{this.dataValues.number_of_pokemon}}</td>
+                            </tr>
+                        {{/each}}
+                    {{/if}} 
                 </tbody>
             </table>
         </div>

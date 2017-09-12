@@ -60,11 +60,12 @@ router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
         },
         type: db.sequelize.QueryTypes.SELECT
     }).then(function(data){
+        console.log(data);
         var hbsObject = {
             sessionUser : req.user,
-            trainers : data
+            similarTrainers : data
         };
-        res.render("similarUsers", hbsObject);
+        res.render("allUsers", hbsObject);
     });
 });
 
