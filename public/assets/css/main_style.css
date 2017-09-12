@@ -1,3 +1,4 @@
+
 body { 
   background: url(../images/background.png) no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -8,10 +9,17 @@ body {
   text-transform: capitalize;
 }
 
+#welcomeHeader, #loginHeader, #backpackHeader, #registerHeader{
+    font-family: "Courier New", Courier, monospace;
+
+}
+
 label {
     font-size: 28px;
     width: 100%;
     text-align: center;
+    font-family: "Courier New", Courier, monospace;
+
 }
 
 input {
@@ -19,16 +27,19 @@ input {
 }
 
 form {
-    position: absolute;
+    position: relative;
     left: 30%;
+    right: 30%;
     top: 28%;
     width: 40%;
     text-align: center;
     margin-top: 10px;
+    font-family: "Courier New", Courier, monospace;
 }
 
-h1{
-    position: absolute;
+h1 {
+    font-family: "Courier New", Courier, monospace;
+    position: relative;
     width: 50%;
     left: 25%;
     text-align: center;
@@ -44,7 +55,7 @@ h1{
 }
 
 h2{
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Courier New", Courier, monospace;
     font-size: 30px;
     color: black;
 }
@@ -81,11 +92,13 @@ input {
 
 #loginLink {
     background-color: white;
+    font-family: "Courier New", Courier, monospace;
     color: blue;
-    position: absolute;
+    position: relative;
     top: 38%;
     left: 30%;
     padding: 10px;
+    margin-top: 2%;
     font-size: 24px;
     width: 40%;
     text-align: center;
@@ -99,11 +112,13 @@ input {
 
 #registerLink {
     background-color: white;
+    font-family: "Courier New", Courier, monospace;
     color: blue;
-    position: absolute;
+    position: relative;
     top: 53%;
     left: 30%;
     padding: 10px;
+    margin-top: 2%;
     font-size: 24px;
     border-width: 5px;
     width: 40%;
@@ -212,3 +227,22 @@ table {
               inset 0 0 0 1px black;
     font-family: "Courier New", Courier, monospace;
 }
+
+#myPanel {
+    padding: 10px;
+    padding-left: 20px;
+    background-color: white;
+    margin: 0px;
+    border-radius: 5px;
+    border: 3px solid white;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
+    font-family: "Courier New", Courier, monospace;
+    position: absolute;
+    width: 70%;
+    left: 15%;
+}
+
+
