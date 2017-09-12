@@ -43,7 +43,6 @@ h1{
               inset 0 0 0 1px black;
 }
 
-
 h2{
     font-family: 'Open Sans', sans-serif;
     font-size: 30px;
@@ -117,34 +116,42 @@ input {
               inset 0 0 0 1px black;
 }
 
-#carrot1, #carrot2, .carrot3 {
-    display: none;
+#carrot1, #carrot2, .carrot3, .navbarcarrot1, .navbarcarrot2, .navbarcarrotBrand {
+    opacity: 0;
 }
     
-#loginLink:hover #carrot1 {
-    display: inline;
+#loginLink:hover #carrot1, #loginLink {
+    opacity: 1;
+    text-decoration: none;
 }
 
-
-#registerLink:hover #carrot2 {
-    display: inline;
+#registerLink:hover #carrot2, #registerLink {
+    opacity: 1;
+    text-decoration: none;
 }
 
 .submit:hover .carrot3 {
-    display:inline;
+    opacity: 1;
 }
 
+.navbar-brand:hover .navbarcarrotBrand {
+    opacity: 1;
+}
+
+#surveyLink:hover .navbarcarrot1 {
+    opacity: 1;
+}
+
+#userLink:hover .navbarcarrot2 {
+    opacity: 1;
+}
 
 #myCarousel {
     position: absolute;
-    top: 25%;
+    top: 35%;
     width: 90%;
     height: 60%;
     left: 5%;
-}
-
-#loginLink:hover, #registerLink:hover{
-    opacity: .7;
 }
 
 table {
@@ -160,4 +167,48 @@ table {
 
 .myPanelContainer {
     margin-top: 20px;
+}
+
+.carousel-inner > .item > img {
+   position: absolute;
+   left: 10%;
+   margin-top: 10%;
+} 
+
+#myCarousel {
+    background-image: url("/assets/images/grid.png");
+    width: 60%;
+    left: 20%;
+    border-radius: 5px;
+    border: 3px solid #f93d31;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
+}
+
+
+.heightWeight, .pokeName{
+    background-color: white;
+    border-left: 8px solid #f93d31;
+    border-right: 8px solid #f93d31;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    width: 33%;
+    float: left;
+    margin: 5px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 5%;
+}
+
+.navbar {
+    border-radius: 5px;
+    border: 3px solid #f93d31;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
+    font-family: "Courier New", Courier, monospace;
 }
