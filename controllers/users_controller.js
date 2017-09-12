@@ -45,5 +45,28 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res) {
     }
 });
 
+router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
+    var query = "";
+    query += "SELECT t3.id, t3.username, t3.email, count(*) as numberOfSimilarPokemon";
+    query += " FROM userpokemon AS t1";
+    query += " INNER JOIN (SELECT  pokemonNumber FROM userPokemon WHERE userId = :userId) AS t2 ON t1.pokemonNumber = t2.pokemonNumber";
+    query += " INNER JOIN users AS t3 ON t1.userId = t3.id";
+    query += " WHERE t1.userId <> :userId";
+    query += " GROUP BY userId";
+    query += " ORDER BY numberOfSimilarPokemon DESC";
+    db.sequelize.query(query, {
+        replacements : {
+            userId : req.params.id
+        },
+        type: db.sequelize.QueryTypes.SELECT
+    }).then(function(data){
+        var hbsObject = {
+            sessionUser : req.user,
+            trainers : data
+        };
+        res.render("similarUsers", hbsObject);
+    });
+});
+
 // Export routes for server.js to use.
 module.exports = router;
