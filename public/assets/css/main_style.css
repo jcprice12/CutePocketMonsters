@@ -212,3 +212,7 @@ table {
               inset 0 0 0 1px black;
     font-family: "Courier New", Courier, monospace;
 }
+
+.myLinksDiv {
+    margin-bottom:8px;
+}

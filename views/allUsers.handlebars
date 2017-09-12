@@ -5,6 +5,13 @@
             <h2>All Trainers</h2>
         </div>
         <div class="panel-body">
+            <div class="myLinksDiv">
+                {{#if similarTrainers}}
+                    <a class="btn btn-default" href="/users">All Trainers</a>
+                {{else}}
+                    <a class="btn btn-default" href="/users/similar/{{sessionUser.dataValues.id}}">Find Similar Trainers</a>
+                {{/if}}
+            </div>
             <table class="table">
                 <thead>
                     <tr>
