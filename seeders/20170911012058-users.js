@@ -22,6 +22,11 @@ module.exports = {
         password: hashPassword("password"),
         email: "best@best.com"
       },
+      {
+        username: "rest",
+        password: hashPassword("password"),
+        email: "rest@rest.com"
+      },
     ], {});
   },
 
