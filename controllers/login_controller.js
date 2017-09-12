@@ -20,7 +20,6 @@ router.get("/login", function(req, res) {
 });
 
 router.post("/login", serverFile.getPassport().authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-    console.log(req.user);
     var id = req.user.dataValues.id;
     db.User.findOne({
         where : {
@@ -33,7 +32,9 @@ router.post("/login", serverFile.getPassport().authenticate('local', { failureRe
             } 
         }
     }).then(function(userPokemon){
+        console.log("hiii888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888")
         if(userPokemon.Pokemons && userPokemon.Pokemons.length > 0){
+            console.log("I have pokemon");
             res.redirect("/users/" + id);
         } else {
             res.redirect("/");
@@ -42,6 +43,11 @@ router.post("/login", serverFile.getPassport().authenticate('local', { failureRe
         console.log(err);
         res.redirect('/');
     });
+});
+
+router.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
 });
 
 router.get("/register", function(req, res){

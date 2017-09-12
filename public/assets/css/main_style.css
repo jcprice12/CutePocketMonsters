@@ -43,6 +43,13 @@ h1{
               inset 0 0 0 1px black;
 }
 
+
+h2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    color: black;
+}
+
 .submit {
     background-color: blue;
     font-size: 16px;
@@ -118,6 +125,7 @@ input {
     display: inline;
 }
 
+
 #registerLink:hover #carrot2 {
     display: inline;
 }
@@ -133,4 +141,23 @@ input {
     width: 90%;
     height: 60%;
     left: 5%;
+}
+
+#loginLink:hover, #registerLink:hover{
+    opacity: .7;
+}
+
+table {
+    background: #f2f2f2;
+    border-radius: 4px;
+}
+
+.myTr:hover {
+    background: #808080;
+    color: #f2f2f2;
+    cursor: pointer;
+}
+
+.myPanelContainer {
+    margin-top: 20px;
 }

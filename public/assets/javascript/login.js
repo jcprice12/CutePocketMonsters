@@ -1,3 +1,5 @@
 $(document).ready(function(){
-    //listeners here
+    $("#submit").click(function() {
+        $("#loginForm").submit()
+    })
 });
