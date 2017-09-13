@@ -20,9 +20,9 @@
                         <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
                         <td>{{this.dataValues.Name}}</td>
                         {{#if this.dataValues.UserPokemon.dataValues.starting}}
-                            <td><span class="glyphicon glyphicon-ok"></span></td>
+                            <td class="starterCol" data-starting={{this.dataValues.UserPokemon.dataValues.starting}}><span class="glyphicon glyphicon-ok"></span></td>
                         {{else}}
-                            <td></td>
+                            <td class="starterCol" data-starting={{this.dataValues.UserPokemon.dataValues.starting}}></td>
                         {{/if}}
                     </tr>
                 {{/each}}
@@ -30,3 +30,5 @@
         </table>
     </form>
 </div>
+
+<script src="/assets/javascript/editUser.js"></script>
