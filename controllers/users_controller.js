@@ -60,11 +60,10 @@ router.get("/users/edit", serverFile.checkUser, function(req, res){
 
 router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
     
-    if(isNaN(req.params.id)){
-       return next();
-    }
-
     if(req.params.id){
+        if(isNaN(req.params.id)){
+            return next();
+         }     
         getUserAndPokemon(req.params.id).then(function(userPokemon){
             var hbsObject = {
                 "userPokemon" : userPokemon,
