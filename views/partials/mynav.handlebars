@@ -32,7 +32,8 @@
                 <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             {{/unless}}
             {{#if sessionUser}}
-                <li><a href="/users/{{sessionUser.dataValues.id}}"><span class="glyphicon glyphicon-user"></span> {{sessionUser.dataValues.username}}</a></li>
+                <li><a href="/users/edit"><span class="glyphicon glyphicon-user"></span> {{sessionUser.dataValues.username}}</a></li>
+                <li><a href="/users/{{sessionUser.dataValues.id}}"><span class="glyphicon glyphicon-briefcase"></span> Backpack</a></li>
                 <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a></li>
             {{/if}}
         </ul>
