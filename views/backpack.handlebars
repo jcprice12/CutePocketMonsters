@@ -13,95 +13,26 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-    <div class="item active">
-      <div class="pokeName"> NAME</div><br>
-      <div class="pokeSprite">
-        <img src="/assets/images/sprites/1.png" style="width: 10%"><br>
-      </div>
-      <div class="heightWeight">
-        HEIGHT: <hr>
-        WEIGHT: <hr>
-      </div>
-      <div class="pokeStats">
-          HP:  ATTACK: <hr>
-          DEFENSE: SPEED: <hr>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="pokeName"> NAME</div><br>
-      <div class="pokeSprite">
-        <img src="/assets/images/sprites/1.png" style="width: 10%"><br>
-      </div>      
-      <div class="heightWeight">
-        HEIGHT: <hr>
-        WEIGHT: <hr>
-      </div>
-      <div class="pokeStats">
-          HP:  ATTACK: <hr>
-          DEFENSE: SPEED: <hr>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="pokeName"> NAME</div><br>
-      <div class="pokeSprite">
-        <img src="/assets/images/sprites/1.png" style="width: 10%"><br>
-      </div>      
-      <div class="heightWeight">
-        HEIGHT: <hr>
-        WEIGHT: <hr>
-      </div>
-      <div class="pokeStats">
-          HP:  ATTACK: <hr>
-          DEFENSE: SPEED: <hr>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="pokeName"> NAME</div><br>
-      <div class="pokeSprite">
-        <img src="/assets/images/sprites/1.png" style="width: 10%"><br>
-      </div>      
-      <div class="heightWeight">
-        HEIGHT: <hr>
-        WEIGHT: <hr>
-      </div>
-      <div class="pokeStats">
-          HP:  ATTACK: <hr>
-          DEFENSE: SPEED: <hr>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="pokeName"> NAME</div><br>
-      <div class="pokeSprite">
-        <img src="/assets/images/sprites/1.png" style="width: 10%"><br>
-      </div>      
-      <div class="heightWeight">
-        HEIGHT: <hr>
-        WEIGHT: <hr>
-      </div>
-      <div class="pokeStats">
-          HP:  ATTACK: <hr>
-          DEFENSE: SPEED: <hr>
-      </div>
-    </div>
-
-    <div class="item">
-      <div class="pokeName"> NAME</div><br>
-      <div class="pokeSprite">
-        <img src="/assets/images/sprites/1.png" style="width: 10%"><br>
-      </div>      
-      <div class="heightWeight">
-        HEIGHT: <hr>
-        WEIGHT: <hr>
-      </div>
-      <div class="pokeStats">
-          HP:  ATTACK: <hr>
-          DEFENSE: SPEED: <hr>
-      </div>
-    </div>
+    {{#each userPokemon.dataValues.Pokemons}}
+      {{#if @first}}
+        <div class="item active">
+      {{else}}
+        <div class="item">
+      {{/if}}
+          <div class="pokeName"> NAME: {{this.dataValues.Name}}</div><br>
+          <div class="pokeSprite">
+            <img src="/assets/images/sprites/{{this.dataValues.Number}}.png" style="width: 10%"><br>
+          </div>
+          <div class="heightWeight">
+            HEIGHT: <hr>
+            WEIGHT: <hr>
+          </div>
+          <div class="pokeStats">
+              HP:  ATTACK: <hr>
+              DEFENSE: SPEED: <hr>
+          </div>
+        </div>   
+    {{/each}}
 
 
     <!-- Left and right controls -->
