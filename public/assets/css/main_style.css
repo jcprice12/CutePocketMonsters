@@ -216,12 +216,41 @@ table {
     border-top: 1px solid gray;
     border-bottom: 1px solid gray;
     width: 33%;
-    float: left;
+    position: relative;
+    left: 55%;
+    top: -80px;
     margin: 5px;
     font-family: "Courier New", Courier, monospace;
     font-size: 16px;
     padding: 5px;
     margin-right: 5%;
+}
+
+.pokeName {
+    left: 10%;
+    top: 45px;
+}
+
+.pokeSprite {
+    position: relative;
+    left: 23%;
+    top: 50px;
+}
+
+.pokeStats {
+    background-color: white;
+    border-left: 8px solid #f93d31;
+    border-right: 8px solid #f93d31;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    width: 79%;
+    height: 15%;
+    position: relative;
+    left: 10%;
+    top: -40px;
+    line-height: 12px;
+    font-family: "Courier New", Courier, monospace;
+
 }
 
 .navbar {
@@ -250,7 +279,6 @@ table {
     width: 70%;
     left: 15%;
 }
-
 
 .myLinksDiv {
     margin-bottom:8px;
