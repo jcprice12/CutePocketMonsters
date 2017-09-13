@@ -13,7 +13,7 @@ router.get("/survey", serverFile.checkUser, function(req, res) {
 });
 
 router.post("/survey", serverFile.checkUser, function(req, res) {
-    var qValArr = ["t", "f", "t", "Red", "f", "mix", "people", "t"]
+    var qValArr = req.body.arr
     var whereCond = surveyHelper.compileQuery(qValArr);
     console.log("Test: " + JSON.stringify(whereCond, null, 2));
     db.Pokemon.findAll(whereCond).then(function(pokemonSet){

@@ -10,7 +10,7 @@ $(document).ready(function(){
                 var radioCheckVal = $(id).val()
                 if (radioCheckVal === undefined){
                     isValid = false;
-                    break;
+                    // break;
                 } else {
                     qValArr.push(radioCheckVal)
                 }
