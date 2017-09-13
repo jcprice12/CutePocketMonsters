@@ -58,6 +58,8 @@ router.get("/users/edit", serverFile.checkUser, function(req, res){
     });
 });
 
+
+// This goes to the user's backpack if an ID is specified, else it goes to all users overview
 router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
     
     if(req.params.id){
