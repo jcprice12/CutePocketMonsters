@@ -32,12 +32,12 @@ router.post("/login", serverFile.getPassport().authenticate('local', { failureRe
             } 
         }
     }).then(function(userPokemon){
-        console.log("hiii888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888888")
         if(userPokemon.Pokemons && userPokemon.Pokemons.length > 0){
             console.log("I have pokemon");
             res.redirect("/users/" + id);
         } else {
-            res.redirect("/");
+            console.log("I don't have pokemon");
+            res.redirect("/survey");
         }
     }).catch(function(err){
         console.log(err);
