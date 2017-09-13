@@ -67,6 +67,8 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
             return next();
          }     
         getUserAndPokemon(req.params.id).then(function(userPokemon){
+
+            console.log(userPokemon.dataValues.Pokemons[0].UserPokemon);
             var hbsObject = {
                 "userPokemon" : userPokemon,
                 "sessionUser" : req.user
