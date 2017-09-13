@@ -1,13 +1,4 @@
-var express = require("express");
-var router = express.Router();
-var serverFile = require("../server.js");
-var connectEnsureLogin = require("connect-ensure-login");
-// Import models
-var db = require("../models");
-
-var qValArr = ["t", "f", "Red", "t", "mix", "f", "people", "t"]
-
-function compileQuery(qValArr){
+var compileQuery = function(qValArr){
     var query = {};
     console.log(JSON.stringify(query, null, 2));
     console.log("============");
@@ -61,8 +52,8 @@ function compileQuery(qValArr){
                         ]
                     });
                 }
-            console.log("==========================")
-            console.log("After First: " + JSON.stringify(query, null, 2))
+            //console.log("==========================")
+            //console.log("After First: " + JSON.stringify(query, null, 2))
             break;
             // "Slow and steady wins the race"
             case 1:
@@ -80,8 +71,8 @@ function compileQuery(qValArr){
                         } 
                     })
                 }
-                console.log("==========================")
-                console.log("After Second: " + JSON.stringify(query, null, 2))
+                //console.log("==========================")
+                //console.log("After Second: " + JSON.stringify(query, null, 2))
             break;
             // Normal stuff vs mythic stuff
             case 2:
@@ -150,12 +141,13 @@ function compileQuery(qValArr){
                         ]
                     })                
                 }
-                console.log("==========================")
-                console.log("After Third: " + JSON.stringify(query, null, 2))
+                //console.log("==========================")
+                //console.log("After Third: " + JSON.stringify(query, null, 2))
             break;
             // Pick Favorite Color
             case 3:
                 switch (qValArr[3]){
+                    
                     case "Blue":
                         query.where.$or[0].$and.push({
                             $or: [
@@ -214,6 +206,7 @@ function compileQuery(qValArr){
                     break;
 
                     case "Red":
+                        console.log("HEY");
                         query.where.$or[0].$and.push({
                             $or: [
                                 {
@@ -344,10 +337,11 @@ function compileQuery(qValArr){
                                 }
                             ]
                         })
-                    console.log("==========================")
-                    console.log("After Fourth: " + JSON.stringify(query, null, 2))
+                    //console.log("==========================")
+                    //console.log("After Fourth: " + JSON.stringify(query, null, 2))
                     break;
                 }
+            break;
             // Hugs and weight
             case 4: 
                 if (qValArr[4] === "t"){
@@ -363,8 +357,8 @@ function compileQuery(qValArr){
                         }
                     }) 
                 }
-                console.log("==========================")
-                console.log("After Fifth: " + JSON.stringify(query, null, 2))
+                //console.log("==========================")
+                //console.log("After Fifth: " + JSON.stringify(query, null, 2))
             break;
             // Old vs New
             case 5: 
@@ -420,8 +414,8 @@ function compileQuery(qValArr){
                     ]
                 })
             }
-            console.log("==========================")
-            console.log("After Sixth: " + JSON.stringify(query, null, 2))
+            //console.log("==========================")
+            //console.log("After Sixth: " + JSON.stringify(query, null, 2))
             break;     
 
             case 6:
@@ -495,19 +489,19 @@ function compileQuery(qValArr){
                         })
                     break;
                 }
-                console.log("==========================")
-                console.log("After Seventh: " + JSON.stringify(query, null, 2))
+                //console.log("==========================")
+                //console.log("After Seventh: " + JSON.stringify(query, null, 2))
             break;
             
             case 7: 
                 if (qValArr[7] === "t"){
                     query.where.$or.push({
-                        isLegendary: 1
+                        isLegendary: true
                     })
                     
                 }
-                console.log("==========================")
-                console.log("After Eigth: " + JSON.stringify(query, null, 2))
+                //console.log("==========================")
+                //console.log("After Eigth: " + JSON.stringify(query, null, 2))
             break;
 
             default:
@@ -518,6 +512,6 @@ function compileQuery(qValArr){
     return query
 }
 
-var test = compileQuery(qValArr)
-
-console.log("Test: " + JSON.stringify(test, null, 2));
+module.exports = {
+    "compileQuery" : compileQuery
+}
