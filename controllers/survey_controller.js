@@ -7,7 +7,9 @@ var db = require("../models");
 
 var qValArr = ["t", "f", "Red", "t", "mix", "f", "people", "t"]
 
-function compileQuery(qValArr){
+var seedArr = require("../public/assets/javascript/survey.js")
+
+function compileQuery(array){
     var query = {};
     console.log(JSON.stringify(query, null, 2));
     console.log("============");
@@ -25,11 +27,11 @@ function compileQuery(qValArr){
     });
     console.log(JSON.stringify(query, null, 2));
     console.log("============");
-    for (var j = 0; j < qValArr.length; j++ ){
+    for (var j = 0; j < array.length; j++ ){
         switch (j) {
             // "The best defense is a good offense"
             case 0:
-                if (qValArr[0] === "t"){
+                if (array[0] === "t"){
                     query.where.$or[0].$and.push({ 
                         $or: [
                             { 
@@ -66,7 +68,7 @@ function compileQuery(qValArr){
             break;
             // "Slow and steady wins the race"
             case 1:
-                if (qValArr[1] === "t"){
+                if (array[1] === "t"){
                     query.where.$or[0].$and.push({
                         Speed: {
                             $lte : 82
@@ -85,7 +87,7 @@ function compileQuery(qValArr){
             break;
             // Normal stuff vs mythic stuff
             case 2:
-                if (qValArr[2] === "t"){
+                if (array[2] === "t"){
                     query.where.$or[0].$and.push({
                        $or: [
                             {
@@ -155,7 +157,7 @@ function compileQuery(qValArr){
             break;
             // Pick Favorite Color
             case 3:
-                switch (qValArr[3]){
+                switch (array[3]){
                     case "Blue":
                         query.where.$or[0].$and.push({
                             $or: [
@@ -350,7 +352,7 @@ function compileQuery(qValArr){
                 }
             // Hugs and weight
             case 4: 
-                if (qValArr[4] === "t"){
+                if (array[4] === "t"){
                     query.where.$or[0].$and.push({
                         Weight_kg: {
                             $lte: 25
@@ -368,7 +370,7 @@ function compileQuery(qValArr){
             break;
             // Old vs New
             case 5: 
-            if (qValArr[5] === "old"){
+            if (array[5] === "old"){
                 query.where.$or[0].$and.push({
                     $or: [
                         {
@@ -382,7 +384,7 @@ function compileQuery(qValArr){
                         }
                     ]
                 })
-            } else if (qValArr[5] === "new"){
+            } else if (array[5] === "new"){
                 query.where.$or[0].$and.push({
                     $or: [
                         {
@@ -425,7 +427,7 @@ function compileQuery(qValArr){
             break;     
 
             case 6:
-                switch (qValArr[6]){
+                switch (array[6]){
                     case "comp":
                         query.where.$or[0].$and.push({
                             $or: [
@@ -500,7 +502,7 @@ function compileQuery(qValArr){
             break;
             
             case 7: 
-                if (qValArr[7] === "t"){
+                if (array[7] === "t"){
                     query.where.$or.push({
                         isLegendary: 1
                     })
@@ -518,6 +520,6 @@ function compileQuery(qValArr){
     return query
 }
 
-var test = compileQuery(qValArr)
+var test = compileQuery(seedArr)
 
 console.log("Test: " + JSON.stringify(test, null, 2));

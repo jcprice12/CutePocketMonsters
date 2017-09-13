@@ -23,17 +23,18 @@ $(document).ready(function(){
             return isValid  
         }
 
-                        // If all required fields are filled
-                        if (validateForm() === true)
-                            {
-                                var searchQuery = compileQuery();
-                                console.log(searchQuery);
-            
-                            }
-                            else
-                            {
-                                qValArr =[];
-                                alert("Please fill out all fields before submitting!");
-                            }
+        // If all required fields are filled
+        if (validateForm() === true)
+            {
+                var searchQuerySeed = qValArr;
+                console.log(searchQuerySeed);
+                module.exports = searchQuerySeed;
+
+            }
+            else
+            {
+                qValArr =[];
+                alert("Please fill out all fields before submitting!");
+            }
     });
 });
