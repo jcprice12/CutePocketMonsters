@@ -28,9 +28,9 @@ router.post("/survey", serverFile.checkUser, function(req, res) {
             if(pokemonSet.length > 0){
                 tempIndex = Math.floor(Math.random() * pokemonSet.length);
                 //Below is the code to just push the Pokemon ID
-                // myPokemon.push(pokemonSet[tempIndex].dataValues.Number);
+                myPokemon.push(pokemonSet[tempIndex].dataValues.Number);
                 // This is the code to push the whole pokemon object at index [tempIndex]
-                myPokemon.push(pokemonSet[tempIndex]);
+                //myPokemon.push(pokemonSet[tempIndex]);
                 pokemonSet.splice(tempIndex,1);
                 counter++;
             } else {
@@ -40,7 +40,7 @@ router.post("/survey", serverFile.checkUser, function(req, res) {
         // team rendering here
         // res.render("team", { team: myPokemon })
         // BULK CREATE GOES HERE
-        //User.bulkCreate([myPokemon], ['username', 'age'], { ignore: true }).complete()
+        //User.bulkCreate([myPokemon], ['username', req.user.dataValues.id], { ignore: true }).complete()
         console.log(myPokemon);
         //res.redirect("/users/" + req.user.dataValues.id);
         res.end();
