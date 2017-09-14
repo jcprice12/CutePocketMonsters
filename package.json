@@ -32,5 +32,8 @@
     "passport-local": "^1.0.0",
     "password-hash": "^1.2.2",
     "sequelize": "^4.3.1"
+  },
+  "devDependencies": {
+    "nightmare": "^2.10.0"
   }
 }
