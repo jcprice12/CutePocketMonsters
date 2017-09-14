@@ -1,8 +1,8 @@
 $(document).ready(function(){
     var qValArr = [];      
     $("#submit").on("click", function(){
-    // Form validation
-    function validateForm() {
+        // Form validation
+        function validateForm() {
             var isValid = true;
 
             $('.radioGroup').each(function() {
@@ -14,27 +14,28 @@ $(document).ready(function(){
                 } else {
                     qValArr.push(radioCheckVal)
                 }
-            })
-            
-
+            });
             return isValid  
         }
 
         // If all required fields are filled
-        if (validateForm() === true)
-            {
-                $.ajax({
-                    method: "POST",
-                    url: "/survey",
-                    data: {arr: qValArr} 
-                }).done(function(data) {
-                    // console.log("Data passed in: " + data)
-                    window.location.href = "/"
-                })
-            }
-            else {
-                qValArr =[];
-                alert("Please fill out all fields before submitting!");
+        if (validateForm() === true){
+            $.ajax({
+                method: "POST",
+                url: "/survey",
+                data: {arr: qValArr} 
+            }).done(function(data) {
+                if (data.hasOwnProperty("redirect")){
+                    if(data.redirect === "/survey"){
+                        Location.reload(true);
+                    } else {
+                        window.location = data.redirect;
+                    }
+                }
+            });
+        } else {
+            qValArr =[];
+            alert("Please fill out all fields before submitting!");
         }
     });
 });
