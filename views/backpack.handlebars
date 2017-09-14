@@ -1,7 +1,7 @@
 
 {{> mynav}}
 
-<h1>{{userPokemon.dataValues.username}}'s Backpack</h1>
+<h1>{{userStarters.dataValues.username}}'s Backpack</h1>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
@@ -13,7 +13,7 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-    {{#each starterPokemon.dataValues.Pokemons}}
+    {{#each userStarters.dataValues.Pokemons}}
       {{#if @first}}
         <div class="item active">
       {{else}}

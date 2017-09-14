@@ -40,11 +40,16 @@ router.post("/survey", serverFile.checkUser, function(req, res) {
                 redirect : ("/users/" + req.user.dataValues.id),
             });
         }).catch(function(err){
-            res.redirect("/survey");
+            console.log(err);
+            res.send({
+                redirect : ("/survey"),
+            });
         });
     }).catch(function(err){
         console.log(err);
-        res.redirect("/survey");
+        res.send({
+            redirect : ("/survey"),
+        });
     });
 });
 
