@@ -9,11 +9,6 @@ body {
   text-transform: capitalize;
 }
 
-#welcomeHeader, #loginHeader, #backpackHeader, #registerHeader{
-    font-family: "Courier New", Courier, monospace;
-
-}
-
 label {
     font-size: 28px;
     width: 100%;
@@ -43,7 +38,7 @@ h1 {
     width: 50%;
     left: 25%;
     text-align: center;
-    color: red;
+    color: black;
     background-color: white;
     padding: 20px;
     border-radius: 5px;
@@ -83,7 +78,7 @@ h3{
               inset 0 0 0 1px black;
 }
 
-input {
+.loginInput {
     border-radius: 5px;
     border: 1px solid white;
     box-shadow: 0 1px 0 1px black,
@@ -219,7 +214,7 @@ table {
     position: relative;
     left: 55%;
     top: -80px;
-    margin: 5px;
+    margin:0px;
     font-family: "Courier New", Courier, monospace;
     font-size: 16px;
     padding: 5px;
@@ -255,7 +250,7 @@ table {
 
 .navbar {
     border-radius: 5px;
-    border: 3px solid #f93d31;
+    border: 3px solid white;
     box-shadow: 0 1px 0 1px black,
               inset 0 1px 0 1px black,
               0 0 0 1px black,
@@ -292,3 +287,20 @@ table {
     background: #f2f2f2;
     border-radius: 4px;
 }
+
+#surveyTitle, #question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8 {
+    padding: 10px;
+    padding-left: 20px;
+    background-color: white;
+    margin: 0px;
+    border-radius: 5px;
+    border: 3px solid white;
+    box-shadow: 0 1px 0 1px black,
+              inset 0 1px 0 1px black,
+              0 0 0 1px black,
+              inset 0 0 0 1px black;
+    font-family: "Courier New", Courier, monospace;
+    text-transform: uppercase;
+}
+
+
