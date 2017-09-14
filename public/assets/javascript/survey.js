@@ -29,7 +29,9 @@ $(document).ready(function(){
                     data: {arr: qValArr} 
                 }).done(function(data) {
                     // console.log("Data passed in: " + data)
-                    window.location.href = "/"
+                    if(data.hasOwnProperty("redirect")){
+                        window.location = data.redirect
+                    }
                 })
             }
             else {
