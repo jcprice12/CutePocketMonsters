@@ -29,6 +29,24 @@ var getUserAndPokemon = function(userId){
     return promise;
 }
 
+var getStarters = function(userId){
+    var promise = db.User.findOne({
+        where : {
+            "id" : userId
+        },
+        include : {
+            model : db.Pokemon,
+            through : {
+                where : {
+                    starting : true
+                },
+                attributes : ['pokemonNumber', 'starting']
+            }
+        } 
+    });
+    return promise;
+}
+
 router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     var query = "";
     query += "SELECT t3.id, t3.username, t3.email, count(*) as numberOfSimilarPokemon";
@@ -150,15 +168,21 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
         if(isNaN(req.params.id)){
             return next();
          }     
-        getUserAndPokemon(req.params.id).then(function(userPokemon){
-
-            console.log(userPokemon.dataValues.Pokemons[0].UserPokemon);
-            var hbsObject = {
-                "userPokemon" : userPokemon,
-                "sessionUser" : req.user
-            }
-            res.render("backpack", hbsObject);
-        });
+         var promises = [];
+         var userId = req.params.id;
+         var getStartersPromise = getStarters(userId);
+         promises.push(getStartersPromise);
+         Promise.all(promises).then(function(result){
+             var userStarters = result[0];
+             var hbsObject = {
+                "sessionUser" : req.user,
+                "userStarters": userStarters,
+             }
+             console.log(hbsObject);
+             res.render("backpack", hbsObject);
+         }).catch( function(err){
+             res.status(500).send("Error on the server while getting your information. Please try again later.");
+         });
     } else {
         db.User.findAll({
             attributes : ["id", "username", "email", [db.sequelize.fn('COUNT', db.sequelize.col('Number')), 'number_of_pokemon']],

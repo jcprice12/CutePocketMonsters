@@ -26,7 +26,11 @@ $(document).ready(function(){
                 data: {arr: qValArr} 
             }).done(function(data) {
                 if (data.hasOwnProperty("redirect")){
-                    window.location = data.redirect;
+                    if(data.redirect === "/survey"){
+                        Location.reload(true);
+                    } else {
+                        window.location = data.redirect;
+                    }
                 }
             });
         } else {
