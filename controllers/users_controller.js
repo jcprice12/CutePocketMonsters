@@ -47,6 +47,24 @@ var getStarters = function(userId){
     return promise;
 }
 
+var getNonStarters = function(userId){
+    var promise = db.User.findOne({
+        where : {
+            "id" : userId
+        },
+        include : {
+            model : db.Pokemon,
+            through : {
+                where : {
+                    starting : false
+                },
+                attributes : ['pokemonNumber', 'starting']
+            }
+        } 
+    });
+    return promise;
+}
+
 router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     var query = "";
     query += "SELECT t3.id, t3.username, t3.email, count(*) as numberOfSimilarPokemon";
@@ -171,12 +189,16 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          var promises = [];
          var userId = req.params.id;
          var getStartersPromise = getStarters(userId);
+         var getNonStartersPromise = getNonStarters(userId);
          promises.push(getStartersPromise);
+         promises.push(getNonStartersPromise);
          Promise.all(promises).then(function(result){
              var userStarters = result[0];
+             var userNonStarters = result[1];
              var hbsObject = {
                 "sessionUser" : req.user,
                 "userStarters": userStarters,
+                "userNonStarters" : userNonStarters
              }
              console.log(hbsObject);
              res.render("backpack", hbsObject);
