@@ -25,18 +25,17 @@ $(document).ready(function(){
         event.preventDefault();
         var myFormData = {};
         myFormData.username = $("#usernameInput").val().trim();
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(!re.test($("#emailInput").val().trim())){
+            alert("Invalid email format");
+            return;
+        }
         myFormData.email = $("#emailInput").val().trim();
         myFormData.oldPassword = $("#oldPasswordInput").val();
         myFormData.newPassword = $("#newPasswordInput").val();
-        if(myFormData.oldPassword || myFormData.newPassword ){
-            if(myFormData.oldPassword == ""){
-                alert("You must provide your current password to set a new one");
-                return;
-            } 
-            if (myFormData.newPassword == ""){
-                alert("You must provide a new password if you want to change your old one");
-                return;
-            }
+        if(!myFormData.oldPassword){
+            alert("You must provide your current password to edit your profile");
+            return;
         }
         myFormData.starters=[];
         //var starterElements = document.getElementsByClassName("glyphicon-ok");
@@ -51,6 +50,9 @@ $(document).ready(function(){
             data: myFormData,
             success : function(dataBack){
                 console.log(dataBack);
+                if(dataBack.hasOwnProperty("error")){
+                    alert(dataBack.error);
+                }
                 if (dataBack.hasOwnProperty("redirect")){
                     window.location = dataBack.redirect;
                 }

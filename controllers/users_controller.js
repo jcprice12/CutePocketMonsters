@@ -44,7 +44,6 @@ router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
         },
         type: db.sequelize.QueryTypes.SELECT
     }).then(function(data){
-        console.log(data);
         var hbsObject = {
             sessionUser : req.user,
             similarTrainers : data
@@ -59,72 +58,88 @@ router.get("/users/edit", serverFile.checkUser, function(req, res){
             "userPokemon" : userPokemon,
             "sessionUser" : req.user
         }
-        //console.log(hbsObject.userPokemon.dataValues);
-        //console.log(hbsObject.userPokemon.dataValues.Pokemons[0].dataValues.UserPokemon.dataValues.starting);
         res.render("editUser", hbsObject);
     });
 });
 
 router.put("/users/edit", serverFile.checkUser, function(req, res){
-    console.log("USER ***********************");
-    console.log(req.user);
-    if(!password_hash.verify(req.body.oldPassword,req.user.dataValues.password)){
-        req.logout();
-        res.send({redirect: '/login'});
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(req.body.email)){
+        console.log("Invalid Email");
+        return res.send({redirect: '/users/edit'});
+    }
+    if(req.body.starters){
+        if(!(req.body.starters.length >= 1 && req.body.starters.length <= 6)){
+            console.log("Wrong number of starters");
+            return res.send({redirect: '/users/edit'});
+        }
     } else {
-        return db.sequelize.transaction(function (t) {
-            var userInfo = {
-                username : req.body.username,
-                password : hashPassword(req.body.newPassword),
-                email : req.body.email,
-            };
-            return db.User.update(userInfo, {
+        console.log("starters is undefined");
+        return res.send({redirect: '/users/edit'});
+    }
+    if(!password_hash.verify(req.body.oldPassword,req.user.dataValues.password)){
+        console.log("Wrong password");
+        return res.send({error: 'Incorrect Password'});
+    }
+    var currPassword = req.body.oldPassword;
+    if(req.body.newPassword){
+        currPassword = req.body.newPassword;
+    }
+    return db.sequelize.transaction(function (t) {
+        var userInfo = {
+            username : req.body.username,
+            password : hashPassword(currPassword),
+            email : req.body.email,
+        };
+        return db.User.update(userInfo, {
+            where : {
+                id : req.user.dataValues.id
+            },
+            transaction : t
+        }).then(function(userUpdateData){
+            var noStarters = {
+                starting : false
+            }
+            return db.UserPokemon.update(noStarters, {
                 where : {
-                    id : req.user.dataValues.id
+                    userId : req.user.dataValues.id
                 },
                 transaction : t
-            }).then(function(userUpdateData){
-                console.log(userUpdateData);
-                var noStarters = {
-                    starting : false
-                }
-                return db.UserPokemon.update(noStarters, {
+            }).then(function(noStarterUpdateData){
+                return db.UserPokemon.update({starting : true}, {
                     where : {
-                        userId : req.user.dataValues.id
-                    },
-                    transaction : t
-                }).then(function(noStarterUpdateData){
-                    console.log(noStarterUpdateData);
-                    console.log(req.body.starters); 
-                    return db.UserPokemon.update({starting : true}, {
-                        where : {
-                            $and : [
-                                {
-                                    pokemonNumber : {
-                                        $in : req.body.starters 
-                                    }
-                                },
-                                {
-                                    userId : req.user.dataValues.id   
+                        $and : [
+                            {
+                                pokemonNumber : {
+                                    $in : req.body.starters 
                                 }
-                            ]
-                        },
-                        transaction : t,
-                    }).then(function(updateStartersData){
-                        console.log(updateStartersData);
-                    });
+                            },
+                            {
+                                userId : req.user.dataValues.id   
+                            }
+                        ]
+                    },
+                    transaction : t,
+                }).then(function(updateStartersData){
+                    //intentionally blank
+                }).catch(function(err){
+                    console.log(err);
                 });
+            }).catch(function(err){
+                console.log(err);
             });
-        }).then(function(result){
-            console.log(result);
-            // passport.authenticate('local')(req.username, res, function () {
-            //     res.redirect("/users/" + req.user.dataValues.id);
-            // });
-            res.send({redirect : ("/users/" + req.user.dataValues.id)});
         }).catch(function(err){
-            res.status(500).send("Error updating your information. Please try again later");
+            console.log(err);
         });
-    }
+    }).then(function(result){
+        console.log("User information saved");
+        req.body.password = req.body.newPassword;
+        serverFile.getPassport().authenticate('local')(req, res, function () {
+            res.send({redirect : ("/users/" + req.user.dataValues.id)});
+        });
+    }).catch(function(err){
+        console.log(err);
+    });
 });
 
 

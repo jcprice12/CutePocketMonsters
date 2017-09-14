@@ -16,12 +16,7 @@
         </div>
 
         <div class="form-group">
-            <label for="oldPasswordInput"><h3>OLD PASSWORD</h3></label>
-            <input type="password" class="form-control" id="oldPasswordInput" name="oldPassword">
-        </div>
-
-        <div class="form-group">
-            <label for="newPasswordInput"><h3>NEW PASSWORD</h3></label>
+            <label for="newPasswordInput"><h3>NEW PASSWORD (OPTIONAL)</h3></label>
             <input type="password" class="form-control" id="newPasswordInput" name="newPassword">
         </div>
 
@@ -51,6 +46,11 @@
                     {{/each}}
                 </tbody>
             </table>
+        </div>
+
+        <div class="form-group">
+            <label for="oldPasswordInput"><h3>CURRENT PASSWORD</h3></label>
+            <input type="password" class="form-control" id="oldPasswordInput" name="oldPassword" required>
         </div>
 
         <div class="form-group">
