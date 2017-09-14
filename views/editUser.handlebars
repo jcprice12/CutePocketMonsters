@@ -1,33 +1,62 @@
 {{> mynav}}
+
+<link rel="stylesheet" href="/assets/css/edit_style.css" type="text/css" />
+
 <div class="container myEditContainer">
-    <div class="">
-        <h2>Edit Your Profile</h2>
-    </div>
-    <form>
-        <table class="table myTable">
-            <thead>
-                <tr>
-                    <th>NUMBER</th>
-                    <th>SPRITE</th>
-                    <th>NAME</th>
-                    <th>STARTING</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each userPokemon.dataValues.Pokemons}}
-                    <tr class="myTr" data-pokemonNumber={{this.dataValues.Number}}>
-                        <td>{{this.dataValues.Number}}</td>
-                        <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
-                        <td>{{this.dataValues.Name}}</td>
-                        {{#if this.dataValues.UserPokemon.dataValues.starting}}
-                            <td class="starterCol" data-starting={{this.dataValues.UserPokemon.dataValues.starting}}><span class="glyphicon glyphicon-ok"></span></td>
-                        {{else}}
-                            <td class="starterCol" data-starting={{this.dataValues.UserPokemon.dataValues.starting}}></td>
-                        {{/if}}
+    <h2>Edit Your Profile</h2>
+    <form id="editUserForm">
+        <div class="form-group">
+            <label for="usernameInput"><h3>USERNAME</h3></label>
+            <input type="text" class="form-control" id="usernameInput" name="username" required value={{userPokemon.dataValues.username}}>
+        </div>
+
+        <div class="form-group">
+            <label for="emailInput"><h3>EMAIL</h3></label>
+            <input type="text" class="form-control" id="emailInput" name="email" required value={{userPokemon.dataValues.email}}>
+        </div>
+
+        <div class="form-group">
+            <label for="oldPasswordInput"><h3>OLD PASSWORD</h3></label>
+            <input type="password" class="form-control" id="oldPasswordInput" name="oldPassword">
+        </div>
+
+        <div class="form-group">
+            <label for="newPasswordInput"><h3>NEW PASSWORD</h3></label>
+            <input type="password" class="form-control" id="newPasswordInput" name="newPassword">
+        </div>
+
+        <div class="form-group">
+            <h3>SELECT STARTERS</h3>
+            <table class="table myTable">
+                <thead>
+                    <tr>
+                        <th>NUMBER</th>
+                        <th>SPRITE</th>
+                        <th>NAME</th>
+                        <th>STARTING</th>
                     </tr>
-                {{/each}}
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    {{#each userPokemon.dataValues.Pokemons}}
+                        <tr class="myTr">
+                            <td>{{this.dataValues.Number}}</td>
+                            <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
+                            <td>{{this.dataValues.Name}}</td>
+                            {{#if this.dataValues.UserPokemon.dataValues.starting}}
+                                <td class="starterCol" data-my-number={{this.dataValues.Number}} data-starting={{this.dataValues.UserPokemon.dataValues.starting}}><span class="glyphicon glyphicon-ok"></span></td>
+                            {{else}}
+                                <td class="starterCol" data-my-number={{this.dataValues.Number}} data-starting={{this.dataValues.UserPokemon.dataValues.starting}}></td>
+                            {{/if}}
+                        </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <button id="submitEdit" class="btn btn-default btn-lg btn-block" type="submit">SUBMIT</button>
+        </div>
+
     </form>
 </div>
 

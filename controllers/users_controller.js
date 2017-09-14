@@ -2,8 +2,17 @@ var express = require("express");
 var router = express.Router();
 var serverFile = require("../server.js");
 var connectEnsureLogin = require("connect-ensure-login");
+var password_hash = require("password-hash");
 // Import models
 var db = require("../models");
+
+function hashPassword(pass){
+    var hash = password_hash.generate(pass, {
+        algorithm : 'sha256',
+        saltLength : 16,
+    });
+    return hash;
+}
 
 var getUserAndPokemon = function(userId){
     var promise = db.User.findOne({
@@ -50,12 +59,72 @@ router.get("/users/edit", serverFile.checkUser, function(req, res){
             "userPokemon" : userPokemon,
             "sessionUser" : req.user
         }
-        console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-        console.log(hbsObject.userPokemon.dataValues);
-        console.log("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5");
-        console.log(hbsObject.userPokemon.dataValues.Pokemons[0].dataValues.UserPokemon.dataValues.starting);
+        //console.log(hbsObject.userPokemon.dataValues);
+        //console.log(hbsObject.userPokemon.dataValues.Pokemons[0].dataValues.UserPokemon.dataValues.starting);
         res.render("editUser", hbsObject);
     });
+});
+
+router.put("/users/edit", serverFile.checkUser, function(req, res){
+    console.log("USER ***********************");
+    console.log(req.user);
+    if(!password_hash.verify(req.body.oldPassword,req.user.dataValues.password)){
+        req.logout();
+        res.send({redirect: '/login'});
+    } else {
+        return db.sequelize.transaction(function (t) {
+            var userInfo = {
+                username : req.body.username,
+                password : hashPassword(req.body.newPassword),
+                email : req.body.email,
+            };
+            return db.User.update(userInfo, {
+                where : {
+                    id : req.user.dataValues.id
+                },
+                transaction : t
+            }).then(function(userUpdateData){
+                console.log(userUpdateData);
+                var noStarters = {
+                    starting : false
+                }
+                return db.UserPokemon.update(noStarters, {
+                    where : {
+                        userId : req.user.dataValues.id
+                    },
+                    transaction : t
+                }).then(function(noStarterUpdateData){
+                    console.log(noStarterUpdateData);
+                    console.log(req.body.starters); 
+                    return db.UserPokemon.update({starting : true}, {
+                        where : {
+                            $and : [
+                                {
+                                    pokemonNumber : {
+                                        $in : req.body.starters 
+                                    }
+                                },
+                                {
+                                    userId : req.user.dataValues.id   
+                                }
+                            ]
+                        },
+                        transaction : t,
+                    }).then(function(updateStartersData){
+                        console.log(updateStartersData);
+                    });
+                });
+            });
+        }).then(function(result){
+            console.log(result);
+            // passport.authenticate('local')(req.username, res, function () {
+            //     res.redirect("/users/" + req.user.dataValues.id);
+            // });
+            res.send({redirect : ("/users/" + req.user.dataValues.id)});
+        }).catch(function(err){
+            res.status(500).send("Error updating your information. Please try again later");
+        });
+    }
 });
 
 
