@@ -4,16 +4,13 @@ $(document).ready(function(){
     // Form validation
     function validateForm() {
             var isValid = true;
-            $('.form-control').each(function() {
-            if ( $(this).text() === '' )
-                isValid = false;
-            });
 
             $('.radioGroup').each(function() {
                 var id = '#' + $(this).attr('id') + ' input:radio:checked'
                 var radioCheckVal = $(id).val()
                 if (radioCheckVal === undefined){
-                    isValid = false
+                    isValid = false;
+                    // break;
                 } else {
                     qValArr.push(radioCheckVal)
                 }
@@ -26,9 +23,14 @@ $(document).ready(function(){
         // If all required fields are filled
         if (validateForm() === true)
             {
-                var searchQuery = compileQuery();
-                console.log(searchQuery);
-
+                $.ajax({
+                    method: "POST",
+                    url: "/survey",
+                    data: {arr: qValArr} 
+                }).done(function(data) {
+                    // console.log("Data passed in: " + data)
+                    window.location.href = "/"
+                })
             }
             else {
                 qValArr =[];

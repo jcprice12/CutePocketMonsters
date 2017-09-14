@@ -13,10 +13,13 @@ router.get("/survey", serverFile.checkUser, function(req, res) {
 });
 
 router.post("/survey", serverFile.checkUser, function(req, res) {
-    var qValArr = ["t", "f", "t", "Red", "f", "mix", "people", "t"]
+    var qValArr = req.body.arr
     var whereCond = surveyHelper.compileQuery(qValArr);
     console.log("Test: " + JSON.stringify(whereCond, null, 2));
-    db.Pokemon.findAll(whereCond).then(function(pokemonSet){
+
+    db.Pokemon.findAll(whereCond)
+    
+    .then(function(pokemonSet){
         //console.log(pokemonSet);
         var counter = 0;
         var myPokemon = [];
@@ -24,13 +27,20 @@ router.post("/survey", serverFile.checkUser, function(req, res) {
         while(counter < 6){
             if(pokemonSet.length > 0){
                 tempIndex = Math.floor(Math.random() * pokemonSet.length);
-                myPokemon.push(pokemonSet[tempIndex].dataValues.Number);
+                //Below is the code to just push the Pokemon ID
+                // myPokemon.push(pokemonSet[tempIndex].dataValues.Number);
+                // This is the code to push the whole pokemon object at index [tempIndex]
+                myPokemon.push(pokemonSet[tempIndex]);
                 pokemonSet.splice(tempIndex,1);
                 counter++;
             } else {
                 break;
             }
         }
+        // team rendering here
+        // res.render("team", { team: myPokemon })
+        // BULK CREATE GOES HERE
+        //User.bulkCreate([myPokemon], ['username', 'age'], { ignore: true }).complete()
         console.log(myPokemon);
         //res.redirect("/users/" + req.user.dataValues.id);
         res.end();

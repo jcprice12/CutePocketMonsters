@@ -57,6 +57,10 @@ router.get("/register", function(req, res){
 
 router.post("/register", function(req, res){
     req.body.password = hashPassword(req.body.password);
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if(!re.test(req.body.email)){
+        res.send({redirect: '/register'});
+    }
     db.User.create(req.body).then(function(userInserted){
         req.login(userInserted, function(err) {
             if(err){
