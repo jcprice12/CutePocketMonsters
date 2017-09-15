@@ -242,6 +242,7 @@ table {
     font-size: 16px;
     font-family: "Courier New", Courier, monospace;
 
+
 }
 
 .navbar {
@@ -285,7 +286,7 @@ table {
     left: 20%;
 }
 
-#surveyTitle, #question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8 {
+.myEditContainer, #surveyTitle, #question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8 {
     padding: 10px;
     padding-left: 20px;
     background-color: white;
