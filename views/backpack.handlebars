@@ -3,6 +3,7 @@
 
 <h1>{{userStarters.dataValues.username}}'s Backpack</h1>
 
+{{#if userStarters.dataValues.Pokemons}}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -12,7 +13,7 @@
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner">
+    <div class="carousel-inner">
     {{#each userStarters.dataValues.Pokemons}}
       {{#if @first}}
         <div class="item active">
@@ -38,7 +39,7 @@
               <strong>SPEED: </strong>{{this.dataValues.Speed}}<br>
           </div>
         </div>   
-    {{/each}}
+      {{/each}}
 
 
     <!-- Left and right controls -->
@@ -52,12 +53,56 @@
     </a>
   </div>
 </div>
+{{/if}}
 
-<div>
-  <h2>MOST RECENT SURVEY RESULTS HERE</h2>
+{{#if userMostRecent}}
+<div id = "recentCaught" class = "pokeInfo">
+  <h2>MOST RECENTLY CAUGHT</h2>
+    <table class="table myTable" id = "recentlyCaught">
+      <thead>
+          <tr>
+            {{#each userMostRecent}}
+              <th class = "newCaughtTableCell">NAME: {{this.Name}}</th>
+            {{/each}}
+          </tr>
+      </thead>
+      <tbody>
+        <tr class ="myTr">
+          {{#each userMostRecent}}
+            <td class = "newCaughtTableCell">NUMBER: {{this.Number}}</td>
+          {{/each}}
+        </tr>
+        <tr class="myTr">
+          {{#each userMostRecent}}
+            <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}}></td>
+          {{/each}}
+        </tr>       
+      </tbody>
+    </table>
 </div>
+{{/if}}
+{{#if userNonStarters.dataValues.Pokemons}}
+<div id = "pokedex" class = "pokeInfo">
+  <h2>MY POKEDEX</h2>
+    <table class="table myTable" id = "nonStarterPokemon">
+        <thead>
+            <tr>
+                <th>NUMBER</th>
+                <th>SPRITE</th>
+                <th>NAME</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each userNonStarters.dataValues.Pokemons}}
+                <tr class="myTr">
+                    <td>{{this.dataValues.Number}}</td>
+                    <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
+                    <td>{{this.dataValues.Name}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+{{/if}}
 
-<div>
-  <h2>ALL USER'S POKEMON HERE</h2>
-</div>
 

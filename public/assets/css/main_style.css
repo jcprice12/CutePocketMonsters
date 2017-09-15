@@ -188,6 +188,7 @@ table {
 
 #myCarousel {
     background-image: url("/assets/images/grid.png");
+    background-size: 100% 100%;
     width: 60%;
     left: 20%;
     border-radius: 5px;
@@ -299,4 +300,18 @@ table {
               inset 0 0 0 1px black;
     font-family: "Courier New", Courier, monospace;
     text-transform: uppercase;
+}
+
+.pokeInfo {
+    position: relative;
+    width: 60%;
+    left: 20%;
+
+}
+
+.newCaughtTableCell {
+    border: 2px black solid;
+    /* border-top: 2px;
+    border-bottom: 2px; */
+    
 }

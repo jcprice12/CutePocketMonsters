@@ -29,17 +29,17 @@ router.post("/survey", serverFile.checkUser, function(req, res) {
                 //Below is the code to just push the Pokemon ID
                 var myObj = {
                     pokemonNumber : pokemonSet[tempIndex].dataValues.Number,
-                    userId : req.user.dataValues.id
+                    userId:req.user.dataValues.id
                 };
                 myPokemon.push(myObj);
                 // This is the code to push the whole pokemon object at index [tempIndex]
                 pokemonSet.splice(tempIndex,1);
                 counter++;
-            } else {
+            } else{
                 break;
             }
         }
-        // BULK CREATE GOES HERE
+        //  BULK CREATE GOES HERE
         console.log(myPokemon);
         db.UserPokemon.bulkCreate(myPokemon, {
             ignoreDuplicates: true,

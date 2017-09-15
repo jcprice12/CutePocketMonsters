@@ -47,6 +47,41 @@ var getStarters = function(userId){
     return promise;
 }
 
+var getNonStarters = function(userId){
+    var promise = db.User.findOne({
+        where : {
+            "id" : userId
+        },
+        include : {
+            model : db.Pokemon,
+            through : {
+                where : {
+                    starting : false
+                },
+                attributes : ['pokemonNumber', 'starting']
+            }
+        } 
+    });
+    return promise;
+}
+
+var getMostRecent = function(userId){
+    var query = "";
+    query += "SELECT *";
+    query += " FROM UserPokemon";
+    query += " INNER JOIN POKEMON ON pokemonNumber = Number";
+    query += " WHERE userId = :userId";
+    query += " ORDER BY createdAt DESC";
+    query += " LIMIT 6";
+    var promise = db.sequelize.query(query, {
+        replacements : {
+            "userId" : userId
+        },
+        type: db.sequelize.QueryTypes.SELECT
+    });
+    return promise;
+}
+
 router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     var query = "";
     query += "SELECT t3.id, t3.username, t3.email, count(*) as numberOfSimilarPokemon";
@@ -171,12 +206,21 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          var promises = [];
          var userId = req.params.id;
          var getStartersPromise = getStarters(userId);
+         var getNonStartersPromise = getNonStarters(userId);
+         var getMostRecentPromise = getMostRecent(userId);
          promises.push(getStartersPromise);
+         promises.push(getNonStartersPromise);
+         promises.push(getMostRecentPromise)
          Promise.all(promises).then(function(result){
              var userStarters = result[0];
+             var userNonStarters = result[1];
+             var userMostRecent = result[2];
+             console.log(userMostRecent)
              var hbsObject = {
                 "sessionUser" : req.user,
                 "userStarters": userStarters,
+                "userNonStarters" : userNonStarters,
+                "userMostRecent" : userMostRecent
              }
              console.log(hbsObject);
              res.render("backpack", hbsObject);

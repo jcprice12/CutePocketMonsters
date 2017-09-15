@@ -1,4 +1,4 @@
-
+{{> mynav}}
 <h1 id="registerHeader">REGISTER TO START BUILDING YOUR TEAM</h1>
 
 <form class="myForm" id="registerUserForm" action="/register" method="post">
@@ -14,11 +14,11 @@
 	    <label class="myLabel">PASSWORD</label><br>
 	    <input class="loginInput" type="password" name="password"/>
 	</div>
-	<div class="submit">
+	<div id="submitRegisterButton" class="submit">
 		<span class="carrot3">
         	<i class="fa fa-caret-right" aria-hidden="true"></i>
     	</span>
 		SUBMIT
 	</div>
 </form>
-<script src="assets/javascript/register.js"></script>
+<script src="/assets/javascript/register.js"></script>

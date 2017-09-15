@@ -1,4 +1,5 @@
 //dependencies
+var flash = require('connect-flash');
 var express = require("express");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
@@ -96,6 +97,7 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 // Override POST for form submissions (may not be necessary)
 app.use(methodOverride("_method"));
