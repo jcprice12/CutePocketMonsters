@@ -24,30 +24,32 @@
         {{#if userPokemon.dataValues.Pokemons}}
         <div class="form-group">
             <h3>SELECT STARTERS</h3>
-            <table class="table myTable">
-                <thead>
-                    <tr>
-                        <th>NUMBER</th>
-                        <th>SPRITE</th>
-                        <th>NAME</th>
-                        <th>STARTING</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {{#each userPokemon.dataValues.Pokemons}}
-                        <tr class="myTr">
-                            <td>{{this.dataValues.Number}}</td>
-                            <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
-                            <td>{{this.dataValues.Name}}</td>
-                            {{#if this.dataValues.UserPokemon.dataValues.starting}}
-                                <td class="starterCol" data-my-number={{this.dataValues.Number}} data-starting={{this.dataValues.UserPokemon.dataValues.starting}}><span class="glyphicon glyphicon-ok"></span></td>
-                            {{else}}
-                                <td class="starterCol" data-my-number={{this.dataValues.Number}} data-starting={{this.dataValues.UserPokemon.dataValues.starting}}></td>
-                            {{/if}}
+            <div class="scrolls">
+                <table class="table myTable" id="myPokemon">
+                    <thead>
+                        <tr>
+                            <th>NUMBER</th>
+                            <th>SPRITE</th>
+                            <th>NAME</th>
+                            <th>STARTING</th>
                         </tr>
-                    {{/each}}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {{#each userPokemon.dataValues.Pokemons}}
+                            <tr class="myTr">
+                                <td>{{this.dataValues.Number}}</td>
+                                <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
+                                <td>{{this.dataValues.Name}}</td>
+                                {{#if this.dataValues.UserPokemon.dataValues.starting}}
+                                    <td class="starterCol" data-my-number={{this.dataValues.Number}} data-starting={{this.dataValues.UserPokemon.dataValues.starting}}><span class="glyphicon glyphicon-ok"></span></td>
+                                {{else}}
+                                    <td class="starterCol" data-my-number={{this.dataValues.Number}} data-starting={{this.dataValues.UserPokemon.dataValues.starting}}></td>
+                                {{/if}}
+                            </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
         </div>
         {{/if}}
 
