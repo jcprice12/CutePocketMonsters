@@ -287,11 +287,12 @@ table {
     left: 20%;
 }
 
-.myEditContainer, #surveyTitle, #question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8 {
+#recentCaught, #pokedex, .myEditContainer, #surveyTitle, #question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8 {
     padding: 10px;
     padding-left: 20px;
     background-color: white;
-    margin: 0px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 5px;
     border: 3px solid white;
     box-shadow: 0 1px 0 1px black,
