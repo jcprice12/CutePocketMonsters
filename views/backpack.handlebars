@@ -61,20 +61,25 @@
     <table class="table myTable" id = "recentlyCaught">
       <thead>
           <tr>
-            {{#each userMostRecent}}
-              <th class = "newCaughtTableCell">NAME: {{this.Name}}</th>
-            {{/each}}
+            <th>NAME</th>
+            <th>NUMBER</th>
+            <th>SPRITE</th>
           </tr>
       </thead>
       <tbody>
-        <tr class ="highlightRow">
+        {{!-- {{#each userMostRecent}}
+        <tr class ="myTr">
+            <td class = "newCaughtTableCell">{{this.Name}}</th>
+            <td class = "newCaughtTableCell">{{this.Number}}</td>
+            <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}}></td>
           {{#each userMostRecent}}
             <td class = "newCaughtTableCell">NUMBER: {{this.Number}}</td>
           {{/each}}
-        </tr>
+        </tr> --}}
         <tr class="highlightRow">
           {{#each userMostRecent}}
-            <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}}></td>
+            <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}} 
+            class = "newlyCaughtSprite"></td>
           {{/each}}
         </tr>       
       </tbody>
