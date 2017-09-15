@@ -3,6 +3,7 @@
 
 <h1>{{userStarters.dataValues.username}}'s Backpack</h1>
 
+{{#if userStarters.dataValues.Pokemons}}
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -12,7 +13,7 @@
   </ol>
 
   <!-- Wrapper for slides -->
-  <div class="carousel-inner">
+    <div class="carousel-inner">
     {{#each userStarters.dataValues.Pokemons}}
       {{#if @first}}
         <div class="item active">
@@ -38,7 +39,7 @@
               <strong>SPEED: </strong>{{this.dataValues.Speed}}<br>
           </div>
         </div>   
-    {{/each}}
+      {{/each}}
 
 
     <!-- Left and right controls -->
@@ -99,6 +100,5 @@
         </tbody>
     </table>
 </div>
-
 
 

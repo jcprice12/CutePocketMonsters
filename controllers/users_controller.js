@@ -135,7 +135,7 @@ router.put("/users/edit", serverFile.checkUser, function(req, res){
         return res.send({error: 'Incorrect Password'});
     }
     var currPassword = req.body.oldPassword;
-    if(req.body.newPassword){
+    if(req.body.newPassword && req.body.newPassword !== ""){
         currPassword = req.body.newPassword;
     }
     return db.sequelize.transaction(function (t) {
@@ -186,7 +186,7 @@ router.put("/users/edit", serverFile.checkUser, function(req, res){
         });
     }).then(function(result){
         console.log("User information saved");
-        req.body.password = req.body.newPassword;
+        req.body.password = currPassword;
         serverFile.getPassport().authenticate('local')(req, res, function () {
             res.send({redirect : ("/users/" + req.user.dataValues.id)});
         });

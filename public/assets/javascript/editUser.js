@@ -43,7 +43,7 @@ $(document).ready(function(){
         for(var i = 0; i < starterElements.length; i++){
             myFormData.starters.push($(starterElements[i]).attr("data-my-number"));
         }
-
+        console.log(myFormData);
         $.ajax({
             method: "PUT",
             url: "/users/edit",

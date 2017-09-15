@@ -20,6 +20,7 @@
             <input type="password" class="form-control" id="newPasswordInput" name="newPassword">
         </div>
 
+        {{#if userPokemon.dataValues.Pokemons}}
         <div class="form-group">
             <h3>SELECT STARTERS</h3>
             <table class="table myTable">
@@ -47,6 +48,7 @@
                 </tbody>
             </table>
         </div>
+        {{/if}}
 
         <div class="form-group">
             <label for="oldPasswordInput"><h3>CURRENT PASSWORD</h3></label>

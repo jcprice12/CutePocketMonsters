@@ -1,14 +1,19 @@
-
+{{> mynav}}
 <div>
 <h1>LOGIN TO VIEW YOUR TEAM</h1>
+{{#if message}}
+	<br>
+	<h2 style="text-align:center;">{{message}}</h2>
+	<br>
+{{/if}}
 <form class="myForm" id="loginForm" action="/login" method="post">
 	<div>
 		<label class="myLabel">USERNAME</label><br>
-		<input type="text" name="username"/><br/>
+		<input class="loginInput"type="text" name="username"/><br/>
 	</div>
 	<div>
 		<label class="myLabel">PASSWORD</label><br>
-		<input type="password" name="password"/>
+		<input class="loginInput" type="password" name="password"/>
 	</div>
 	<div class="submit" id="submit">
 		<span class="carrot3">
