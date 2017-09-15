@@ -15,11 +15,11 @@ function hashPassword(pass){
 
 //route for login page
 router.get("/login", function(req, res) {
-    var hbsObject = {}
+    var hbsObject = {message:req.flash('error')}
     res.render("login", hbsObject);
 });
 
-router.post("/login", serverFile.getPassport().authenticate('local', { failureRedirect: '/login' }), function(req, res) {
+router.post("/login", serverFile.getPassport().authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid login credentials'}), function(req, res) {
     var id = req.user.dataValues.id;
     db.User.findOne({
         where : {
