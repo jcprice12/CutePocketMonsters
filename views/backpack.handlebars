@@ -7,9 +7,13 @@
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
-    <li data-target="#myCarousel" data-slide-to="2"></li>
+    {{#each userStarters.dataValues.Pokemons}}
+      {{#if @first}}
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      {{else}}
+      <li data-target="#myCarousel" data-slide-to="{{@index}}"></li>
+      {{/if}}
+    {{/each}}
   </ol>
 
   <!-- Wrapper for slides -->
@@ -75,8 +79,8 @@
        {{#each userMostRecent}}
             <td class = "newCaughtTableCell">#{{this.Number}}</td>
           {{/each}}
-        </tr> 
-        <tr class="myTr">
+        </tr> --}}
+        <tr class="highlightRow">
           {{#each userMostRecent}}
             <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}} 
             class = "newlyCaughtSprite"></td>
@@ -99,8 +103,8 @@
         </thead>
         <tbody>
             {{#each userNonStarters.dataValues.Pokemons}}
-                <tr class="myTr">
-                    <td>#{{this.dataValues.Number}}</td>
+                <tr class="highlightRow">
+                    <td>{{this.dataValues.Number}}</td>
                     <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
                     <td>{{this.dataValues.Name}}</td>
                 </tr>

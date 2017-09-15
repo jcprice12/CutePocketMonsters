@@ -147,6 +147,10 @@ h3{
     opacity: 1;
 }
 
+.submit:hover {
+    cursor: pointer;
+}
+
 .navbar-brand:hover .navbarcarrotBrand {
     opacity: 1;
 }
@@ -314,21 +318,27 @@ table {
     
 }
 
+.highlightRow:hover {
+    background: #808080;
+    color: #f2f2f2;
+}
+
 .newlyCaughtSprite {
     width: 80px;
     /* align-self : center; */
     
 }
 
-.table {
-    table-layout: fixed;
-    width: 100%;
+.carousel-indicators{
+    bottom:0px;
 }
 
-#recentCaught {
-    overflow: scroll;
+.carousel-indicators li {
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    background-color: #2f2f2f;  
 }
-
-td {
-    min-width: 105px;
+.carousel-indicators .active {
+    background-color: #f93d31;
 }
