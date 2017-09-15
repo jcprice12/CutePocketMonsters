@@ -155,6 +155,10 @@ h3{
     opacity: 1;
 }
 
+.myLinksDiv:hover #trainersCarrot{
+    opacity: 1;
+}
+
 #surveyLink:hover .navbarcarrot1 {
     opacity: 1;
 }
@@ -218,7 +222,7 @@ table {
     width: 40%;
     position: relative;
     left: 55%;
-    top: -80px;
+    top: -10%;
     margin:0px;
     font-family: "Courier New", Courier, monospace;
     font-size: 16px;
@@ -228,7 +232,7 @@ table {
 
 .pokeName {
     left: 10%;
-    top: 45px;
+    top: 15%;
 }
 
 .pokeSprite {
@@ -281,6 +285,11 @@ table {
 
 .myLinksDiv {
     margin-bottom:8px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 .myTable{

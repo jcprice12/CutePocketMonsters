@@ -7,9 +7,17 @@
     <div>
         <div class="myLinksDiv">
             {{#if similarTrainers}}
-                <a class="btn btn-default" href="/users">ALL TRAINERS</a>
+                <a class="btn" href="/users">
+                <span id="trainersCarrot" class="surveyCarrot">
+        	        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    	        </span>
+                CLICK TO VIEW ALL TRAINERS</a>
             {{else}}
-                <a class="btn btn-default" href="/users/similar/{{sessionUser.dataValues.id}}">FIND SIMILAR TRAINERS</a>
+                <a class="btn" href="/users/similar/{{sessionUser.dataValues.id}}">
+                <span id="trainersCarrot" class="surveyCarrot">
+        	        <i class="fa fa-caret-right" aria-hidden="true"></i>
+    	        </span>
+                ClICK TO FIND SIMILAR TRAINERS</a>
             {{/if}}
         </div>
         <table class="table myTable">
