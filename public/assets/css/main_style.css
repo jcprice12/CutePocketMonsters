@@ -391,6 +391,8 @@ table {
 
 #pokedex{
     overflow:scroll;
+    overflow-y: hidden;
+    overflow-x: auto;
 }
 
 #nonStarterPokemon{
