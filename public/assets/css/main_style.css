@@ -328,3 +328,17 @@ table {
     /* align-self : center; */
     
 }
+
+.carousel-indicators{
+    bottom:0px;
+}
+
+.carousel-indicators li {
+    display: inline-block;
+    cursor: pointer;
+    border: none;
+    background-color: #2f2f2f;  
+}
+.carousel-indicators .active {
+    background-color: #f93d31;
+}
