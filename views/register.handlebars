@@ -4,21 +4,21 @@
 <form class="myForm" id="registerUserForm" action="/register" method="post">
 	<div>
         <label class="myLabel">USERNAME</label><br>
-        <input id="usernameInput" type="text" name="username"/><br/>
+        <input id="usernameInput" type="text" name="username" required/><br/>
 	</div>
     <div>
         <label class="myLabel">EMAIL</label><br>
-        <input id="emailInput" type="text" name="email"/><br/>
+        <input id="emailInput" type="text" name="email" required/><br/>
 	</div>
 	<div>
 	    <label class="myLabel">PASSWORD</label><br>
-	    <input id="passwordInput" type="password" name="password"/>
+	    <input id="passwordInput" type="password" name="password" required/>
 	</div>
-	<div class="submit">
+	<div id="submitRegisterButton" class="submit">
 		<span class="carrot3">
         	<i class="fa fa-caret-right" aria-hidden="true"></i>
     	</span>
 		SUBMIT
 	</div>
 </form>
-<script src="assets/javascript/register.js"></script>
+<script src="/assets/javascript/register.js"></script>

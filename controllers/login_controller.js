@@ -56,20 +56,52 @@ router.get("/register", function(req, res){
 });
 
 router.post("/register", function(req, res){
+    if(req.body.password.length < 4){
+        return res.json({"redirect": '/register'});
+    }
     req.body.password = hashPassword(req.body.password);
+    if(req.body.username.length < 4){
+        return res.json({"redirect": '/register'});
+    }
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(!re.test(req.body.email)){
-        res.send({redirect: '/register'});
+        return res.json({"redirect": '/register'});
     }
-    db.User.create(req.body).then(function(userInserted){
-        req.login(userInserted, function(err) {
-            if(err){
-                console.log(err);
-                res.send({redirect: '/register'});
-            } else {
-                res.send({redirect: '/'});
-            }
-        });
+    db.User.findOne({
+        where : {
+            $or : [
+                {
+                    username : req.body.username
+                },
+                {
+                    email : req.body.email
+                }
+            ]
+        },
+    }).then(function(selectRes){
+        if(selectRes){
+            console.log("username and email already exists");
+            res.json({"error" : "Username or email already exists"});
+        } else {
+            return db.sequelize.transaction(function(t) {
+                return db.User.create(req.body, {
+                    transaction : t,
+                }).then(function(userInserted){
+                    req.login(userInserted, function(err) {
+                        if(err){
+                            throw new Error("Could not log back in " + err);
+                        }
+                    });
+                });
+            }).then(function(result){
+                console.log("user registered");
+                res.json({redirect: '/survey'});
+            }).catch(function(err){
+                res.json({"error" : "Error registering. Plase try again later"});
+            });
+        }
+    }).catch(function(err){
+        return res.json({"error" : "Error determining if username/email already exists. Please try again later."});
     });
 });
 
