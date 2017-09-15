@@ -53,7 +53,9 @@
     </a>
   </div>
 </div>
+{{/if}}
 
+{{#if userMostRecent}}
 <div id = "recentCaught" class = "pokeInfo">
   <h2>MOST RECENTLY CAUGHT</h2>
     <table class="table myTable" id = "recentlyCaught">
@@ -78,7 +80,8 @@
       </tbody>
     </table>
 </div>
-
+{{/if}}
+{{#if userNonStarters.dataValues.Pokemons}}
 <div id = "pokedex" class = "pokeInfo">
   <h2>MY POKEDEX</h2>
     <table class="table myTable" id = "nonStarterPokemon">
@@ -100,5 +103,6 @@
         </tbody>
     </table>
 </div>
+{{/if}}
 
 
