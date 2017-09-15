@@ -197,7 +197,7 @@ table {
 
 #myCarousel {
     background-image: url("/assets/images/grid.png");
-    background-size: 100% 100%;
+    background-size: 100%;
     width: 80%;
     left: 10%;
     border-radius: 5px;
@@ -332,11 +332,13 @@ table {
 #recentlyCaught{
     min-width: 625px;
     margin-bottom: 0px;
+    margin-top:2px;
 }
-
-#recentCaught{
+#scrolls {
     overflow: scroll;
-    padding: 0px;
+}
+#recentCaught{
+    padding: 5px;
 }
 .carousel-indicators{
     bottom:0px;
