@@ -4,57 +4,61 @@
 <h1>{{userStarters.dataValues.username}}'s Backpack</h1>
 
 {{#if userStarters.dataValues.Pokemons}}
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    {{#each userStarters.dataValues.Pokemons}}
-      {{#if @first}}
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      {{else}}
-      <li data-target="#myCarousel" data-slide-to="{{@index}}"></li>
-      {{/if}}
-    {{/each}}
-  </ol>
-
-  <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-    {{#each userStarters.dataValues.Pokemons}}
-      {{#if @first}}
-        <div class="item active">
-      {{else}}
-        <div class="item">
-      {{/if}}
-          <div class="pokeName"> <strong>NAME:</strong> {{this.dataValues.Name}}</div><br>
-          <div class="pokeSprite">
-            <img src="/assets/images/sprites/{{this.dataValues.Number}}.png" style="width: 10%"><br>
-          </div>
-          <div class="heightWeight">
-            <strong>TYPE 1:</strong> {{this.dataValues.Type_1}} <br>
-            <strong>TYPE 2: </strong> {{this.dataValues.Type_2}}<br>
-            <strong>HEIGHT(m):</strong> {{this.dataValues.Height_m}}<br>
-            <strong>WEIGHT(kg):</strong> {{this.dataValues.Weight_kg}}<br>
-          </div>
-          <div class="pokeStats">
-              <strong>HP:</strong>{{this.dataValues.HP}} <br>
-              <strong> ATTACK:</strong> {{this.dataValues.Attack}}
-              <strong> SPECIAL ATTACK:</strong> {{this.dataValues.Sp_Atk}}<br>
-              <strong>DEFENSE:</strong> {{this.dataValues.Defense}}
-              <strong>SPECIAL DEFENSE:</strong> {{this.dataValues.Sp_Def}} <br>
-              <strong>SPEED: </strong>{{this.dataValues.Speed}}<br>
-          </div>
-        </div>   
+<div id="carouselWrapper">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      {{#each userStarters.dataValues.Pokemons}}
+        {{#if @first}}
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        {{else}}
+        <li data-target="#myCarousel" data-slide-to="{{@index}}"></li>
+        {{/if}}
       {{/each}}
+    </ol>
+
+    <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+      {{#each userStarters.dataValues.Pokemons}}
+        {{#if @first}}
+          <div class="item active">
+        {{else}}
+          <div class="item">
+        {{/if}}
+            <div class="nameAndSprite">
+              <div class="pokeName"> <strong>NAME:</strong> {{this.dataValues.Name}}</div><br>
+              <div class="pokeSpriteBox">
+                <img src="/assets/images/sprites/{{this.dataValues.Number}}.png" class = "pokeSprite"><br>
+              </div>
+            </div>
+            <div class="heightWeight">
+              <strong>TYPE 1:</strong> {{this.dataValues.Type_1}} <br>
+              <strong>TYPE 2: </strong> {{this.dataValues.Type_2}}<br>
+              <strong>HEIGHT(m):</strong> {{this.dataValues.Height_m}}<br>
+              <strong>WEIGHT(kg):</strong> {{this.dataValues.Weight_kg}}<br>
+            </div>
+            <div class="pokeStats">
+                <strong>HP:</strong>{{this.dataValues.HP}} <br>
+                <strong> ATTACK:</strong> {{this.dataValues.Attack}}
+                <strong> SPECIAL ATTACK:</strong> {{this.dataValues.Sp_Atk}}<br>
+                <strong>DEFENSE:</strong> {{this.dataValues.Defense}}
+                <strong>SPECIAL DEFENSE:</strong> {{this.dataValues.Sp_Def}} <br>
+                <strong>SPEED: </strong>{{this.dataValues.Speed}}<br>
+            </div>
+          </div>   
+        {{/each}}
 
 
-    <!-- Left and right controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-      <i class="fa fa-caret-left fa-5x" aria-hidden="true"></i>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-      <i class="fa fa-caret-right fa-5x" aria-hidden="true"></i>
-      <span class="sr-only">Next</span>
-    </a>
+      <!-- Left and right controls -->
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <i class="fa fa-caret-left fa-5x" aria-hidden="true"></i>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <i class="fa fa-caret-right fa-5x" aria-hidden="true"></i>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
   </div>
 </div>
 {{/if}}
