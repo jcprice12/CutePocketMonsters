@@ -260,7 +260,6 @@ table {
 
 #myPanel {
     padding: 10px;
-    padding-left: 20px;
     background-color: white;
     margin: 0px;
     border-radius: 5px;
@@ -291,7 +290,6 @@ table {
 
 #recentCaught, #pokedex, .myEditContainer, #surveyTitle, #question1, #question2, #question3, #question4, #question5, #question6, #question7, #question8 {
     padding: 10px;
-    padding-left: 20px;
     background-color: white;
     margin-top: 20px;
     margin-bottom: 20px;
