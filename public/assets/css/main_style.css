@@ -168,11 +168,16 @@ h3{
 }
 
 #myCarousel {
+    min-width: 250px;
+}
+
+#carouselWrapper {
     position: relative;
     top: 35%;
-    width: 90%;
     height: 60%;
-    left: 5%;
+    overflow: scroll;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 table {
@@ -201,7 +206,7 @@ table {
 
 #myCarousel {
     background-image: url("/assets/images/grid.png");
-    background-size: 100% 100%;
+    background-size: 100%;
     width: 80%;
     left: 10%;
     border-radius: 5px;
@@ -213,7 +218,7 @@ table {
 }
 
 
-.heightWeight, .pokeName{
+.heightWeight{
     background-color: white;
     border-left: 8px solid #f93d31;
     border-right: 8px solid #f93d31;
@@ -230,15 +235,43 @@ table {
     margin-right: 5%;
 }
 
-.pokeName {
-    left: 10%;
-    top: 15%;
+.pokeName{
+    background-color: white;
+    border-left: 8px solid #f93d31;
+    border-right: 8px solid #f93d31;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    width: 80%;
+    position: relative;
+    /* left: 10%; */
+    top: 45px;
+    margin:0px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    padding: 5px;
+    margin-right: 5%;
+}
+
+.nameAndSprite{
+    margin-left: 10%;
+    width:40%;
+    height: 55%;
+
+}
+
+.pokeSpriteBox {
+    /* position: relative;
+    left: 37.5%;
+    top: 20px; */
+    width: 200px;
+    
 }
 
 .pokeSprite {
-    position: relative;
-    left: 23%;
-    top: 50px;
+    margin-top: 20%;
+    margin-left: 10%;
+    width: 60%;
+    
 }
 
 .pokeStats {
@@ -341,11 +374,15 @@ a {
 #recentlyCaught{
     min-width: 625px;
     margin-bottom: 0px;
+    margin-top:2px;
 }
-
-#recentCaught{
+.scrolls {
     overflow: scroll;
-    padding: 0px;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+#recentCaught{
+    padding: 5px;
 }
 .carousel-indicators{
     bottom:0px;
@@ -361,7 +398,17 @@ a {
     background-color: #f93d31;
 }
 
-.myEditContainer {
+#pokedex{
+    overflow:scroll;
+    overflow-y: hidden;
+    overflow-x: auto;
+}
+
+#nonStarterPokemon{
+    min-width: 295px;
+    margin-bottom: 0px;
+}
+/* .myEditContainer {
     width: 80%;
     left: 10%;
-}
+} */

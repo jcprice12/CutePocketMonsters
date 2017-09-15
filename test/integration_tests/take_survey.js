@@ -7,7 +7,7 @@ nightmare
     .wait(2000)
     .click("a[href = '/login']")
     .wait("input[name = 'username']")
-    .type("input[name = 'username']", "test")
+    .type("input[name = 'username']", "rest")
     .type("input[name = 'password']", "password")
     .screenshot("login.png")
     .click("#submit")
