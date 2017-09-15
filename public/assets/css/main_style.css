@@ -319,3 +319,13 @@ table {
     /* align-self : center; */
     
 }
+
+#recentlyCaught{
+    min-width: 625px;
+    margin-bottom: 0px;
+}
+
+#recentCaught{
+    overflow: scroll;
+    padding: 0px;
+}

@@ -62,14 +62,14 @@
       <thead>
           <tr>
             {{#each userMostRecent}}
-              <th class = "newCaughtTableCell">NAME: {{this.Name}}</th>
+              <th class = "newCaughtTableCell">{{this.Name}}</th>
             {{/each}}
           </tr>
       </thead>
       <tbody>
         <tr class ="myTr">
           {{#each userMostRecent}}
-            <td class = "newCaughtTableCell">NUMBER: {{this.Number}}</td>
+            <td class = "newCaughtTableCell">#{{this.Number}}</td>
           {{/each}}
         </tr>
         <tr class="myTr">
