@@ -269,9 +269,6 @@ table {
               0 0 0 1px black,
               inset 0 0 0 1px black;
     font-family: "Courier New", Courier, monospace;
-    position: absolute;
-    width: 70%;
-    left: 15%;
 }
 
 .myLinksDiv {
@@ -311,8 +308,12 @@ table {
 }
 
 .newCaughtTableCell {
-    border: 2px black solid;
-    /* border-top: 2px;
-    border-bottom: 2px; */
+    text-align: center;
+    
+}
+
+.newlyCaughtSprite {
+    width: 80px;
+    /* align-self : center; */
     
 }
