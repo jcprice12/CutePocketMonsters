@@ -324,3 +324,11 @@ table {
     table-layout: fixed;
     width: 100%;
 }
+
+#recentCaught {
+    overflow: scroll;
+}
+
+td {
+    min-width: 105px;
+}

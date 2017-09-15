@@ -61,21 +61,21 @@
     <table class="table myTable" id = "recentlyCaught">
       <thead>
           <tr>
-            <th>NAME</th>
-            <th>NUMBER</th>
-            <th>SPRITE</th>
+            {{#each userMostRecent}}
+              <th class = "newCaughtTableCell">{{this.Name}}</th>
+            {{/each}}
           </tr>
       </thead>
       <tbody>
-        {{!-- {{#each userMostRecent}}
+{{!-- {{#each userMostRecent}} --}}
         <tr class ="myTr">
-            <td class = "newCaughtTableCell">{{this.Name}}</th>
+            {{!-- <td class = "newCaughtTableCell">{{this.Name}}</th>
             <td class = "newCaughtTableCell">{{this.Number}}</td>
-            <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}}></td>
-          {{#each userMostRecent}}
-            <td class = "newCaughtTableCell">NUMBER: {{this.Number}}</td>
+            <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}}></td> --}}
+       {{#each userMostRecent}}
+            <td class = "newCaughtTableCell">#{{this.Number}}</td>
           {{/each}}
-        </tr> --}}
+        </tr> 
         <tr class="myTr">
           {{#each userMostRecent}}
             <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}} 
@@ -100,7 +100,7 @@
         <tbody>
             {{#each userNonStarters.dataValues.Pokemons}}
                 <tr class="myTr">
-                    <td>{{this.dataValues.Number}}</td>
+                    <td>#{{this.dataValues.Number}}</td>
                     <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
                     <td>{{this.dataValues.Name}}</td>
                 </tr>
