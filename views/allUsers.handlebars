@@ -1,9 +1,9 @@
 {{> mynav}}
-<div id="myPanel" class="">
-    <div class="">
+<div id="myPanel" class="container">
+    <div class="container-fluid">
         <h2>TRAINERS</h2>
     </div>
-    <div class="">
+    <div>
         <div class="myLinksDiv">
             {{#if similarTrainers}}
                 <a class="btn btn-default" href="/users">ALL TRAINERS</a>
@@ -11,7 +11,7 @@
                 <a class="btn btn-default" href="/users/similar/{{sessionUser.dataValues.id}}">FIND SIMILAR TRAINERS</a>
             {{/if}}
         </div>
-        <table class="table">
+        <table class="table myTable">
             <thead>
                 <tr>
                     <th>TRAINER</th>

@@ -170,6 +170,9 @@ h3{
 table {
     background: #f2f2f2;
     border-radius: 4px;
+    table-layout: fixed;
+    word-wrap: break-word;
+    width:100%;
 }
 
 .myTr:hover {
@@ -261,7 +264,6 @@ table {
 #myPanel {
     padding: 10px;
     background-color: white;
-    margin: 0px;
     border-radius: 5px;
     border: 3px solid white;
     box-shadow: 0 1px 0 1px black,
