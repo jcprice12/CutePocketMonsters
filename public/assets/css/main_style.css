@@ -147,6 +147,10 @@ h3{
     opacity: 1;
 }
 
+.submit:hover {
+    cursor: pointer;
+}
+
 .navbar-brand:hover .navbarcarrotBrand {
     opacity: 1;
 }
@@ -313,4 +317,9 @@ table {
     /* border-top: 2px;
     border-bottom: 2px; */
     
+}
+
+.highlightRow:hover {
+    background: #808080;
+    color: #f2f2f2;
 }

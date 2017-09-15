@@ -67,12 +67,12 @@
           </tr>
       </thead>
       <tbody>
-        <tr class ="myTr">
+        <tr class ="highlightRow">
           {{#each userMostRecent}}
             <td class = "newCaughtTableCell">NUMBER: {{this.Number}}</td>
           {{/each}}
         </tr>
-        <tr class="myTr">
+        <tr class="highlightRow">
           {{#each userMostRecent}}
             <td class = "newCaughtTableCell"><img src="/assets/images/sprites/{{this.Number}}.png" alt={{this.Name}}></td>
           {{/each}}
@@ -94,7 +94,7 @@
         </thead>
         <tbody>
             {{#each userNonStarters.dataValues.Pokemons}}
-                <tr class="myTr">
+                <tr class="highlightRow">
                     <td>{{this.dataValues.Number}}</td>
                     <td><img src="/assets/images/sprites/{{this.dataValues.Number}}.png" alt={{this.dataValues.Name}}></td>
                     <td>{{this.dataValues.Name}}</td>
