@@ -1,17 +1,18 @@
 $(document).ready(function(){
+    //listen for row clicks to choose starters
+    //some validation here to make sure you don't choose more than 6 or less than 1
+    //further validation on the server
     $(".myTr").click(function(){
         var starterCol = $(this).find('.starterCol');
         if(starterCol){
             var starting = starterCol.attr("data-starting");
             if(starting == "true"){
-                //var starters = document.getElementsByClassName("glyphicon-ok");
                 var starters = $(".myTr").find("[data-starting='true']");
                 if(starters.length > 1){
                     starterCol.html('');
                     starterCol.attr("data-starting",false);
                 }
             } else {
-                //var starters = document.getElementsByClassName("glyphicon-ok");
                 var starters = $(".myTr").find("[data-starting='true']");
                 if(starters.length < 6){
                     starterCol.html('<span class="glyphicon glyphicon-ok"></span>');
@@ -21,6 +22,8 @@ $(document).ready(function(){
         }
     });
 
+    //submit the edit user form
+    //some validation here for user convenience
     $("#editUserForm").submit(function(event){
         event.preventDefault();
         var myFormData = {};
@@ -43,7 +46,6 @@ $(document).ready(function(){
         for(var i = 0; i < starterElements.length; i++){
             myFormData.starters.push($(starterElements[i]).attr("data-my-number"));
         }
-        console.log(myFormData);
         $.ajax({
             method: "PUT",
             url: "/users/edit",

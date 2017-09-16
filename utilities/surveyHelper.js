@@ -52,8 +52,6 @@ var compileQuery = function(qValArr){
                         ]
                     });
                 }
-            //console.log("==========================")
-            //console.log("After First: " + JSON.stringify(query, null, 2))
             break;
             // "Slow and steady wins the race"
             case 1:
@@ -71,8 +69,6 @@ var compileQuery = function(qValArr){
                         } 
                     })
                 }
-                //console.log("==========================")
-                //console.log("After Second: " + JSON.stringify(query, null, 2))
             break;
             // Normal stuff vs mythic stuff
             case 2:
@@ -141,10 +137,9 @@ var compileQuery = function(qValArr){
                         ]
                     })                
                 }
-                //console.log("==========================")
-                //console.log("After Third: " + JSON.stringify(query, null, 2))
+
             break;
-            // Pick Favorite Color
+            // Pick Favorite Color. Gets primary color of pokemon
             case 3:
                 switch (qValArr[3]){
                     
@@ -206,7 +201,6 @@ var compileQuery = function(qValArr){
                     break;
 
                     case "Red":
-                        console.log("HEY");
                         query.where.$or[0].$and.push({
                             $or: [
                                 {
@@ -337,8 +331,6 @@ var compileQuery = function(qValArr){
                                 }
                             ]
                         })
-                    //console.log("==========================")
-                    //console.log("After Fourth: " + JSON.stringify(query, null, 2))
                     break;
                 }
             break;
@@ -357,8 +349,6 @@ var compileQuery = function(qValArr){
                         }
                     }) 
                 }
-                //console.log("==========================")
-                //console.log("After Fifth: " + JSON.stringify(query, null, 2))
             break;
             // Old vs New
             case 5: 
@@ -414,10 +404,9 @@ var compileQuery = function(qValArr){
                     ]
                 })
             }
-            //console.log("==========================")
-            //console.log("After Sixth: " + JSON.stringify(query, null, 2))
             break;     
 
+            //determines body type
             case 6:
                 switch (qValArr[6]){
                     case "comp":
@@ -489,10 +478,9 @@ var compileQuery = function(qValArr){
                         })
                     break;
                 }
-                //console.log("==========================")
-                //console.log("After Seventh: " + JSON.stringify(query, null, 2))
             break;
             
+            //helps get legendaries
             case 7: 
                 if (qValArr[7] === "t"){
                     query.where.$or.push({
@@ -500,8 +488,6 @@ var compileQuery = function(qValArr){
                     })
                     
                 }
-                //console.log("==========================")
-                //console.log("After Eigth: " + JSON.stringify(query, null, 2))
             break;
 
             default:

@@ -5,6 +5,11 @@ var password_hash = require("password-hash");
 // Import models
 var db = require("../models");
 
+/**
+ * Hash the password given. Adds a 16 bit salt to it. Uses sha256 as the hashing algorithm
+ * @param {string} pass 
+ * @return {string}
+ */
 function hashPassword(pass){
     var hash = password_hash.generate(pass, {
         algorithm : 'sha256',
@@ -19,8 +24,10 @@ router.get("/login", function(req, res) {
     res.render("login", hbsObject);
 });
 
+//route to post the login. passport authentication middleware is used
 router.post("/login", serverFile.getPassport().authenticate('local', {failureRedirect: '/login', failureFlash: 'Invalid login credentials'}), function(req, res) {
     var id = req.user.dataValues.id;
+    //get pokemon if pokemon exist, redirect to the backpack page. Else, go to the survey
     db.User.findOne({
         where : {
             "id" : id
@@ -45,16 +52,19 @@ router.post("/login", serverFile.getPassport().authenticate('local', {failureRed
     });
 });
 
+//route to get the logout. Simply routes to the home page
 router.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
 });
 
+//route to get the register page
 router.get("/register", function(req, res){
     var hbsObject = {}
     res.render("register", hbsObject);
 });
 
+//route to post a new user from the register page
 router.post("/register", function(req, res){
     if(req.body.password.length < 4){
         return res.json({"redirect": '/register'});
@@ -83,7 +93,7 @@ router.post("/register", function(req, res){
             console.log("username and email already exists");
             res.json({"error" : "Username or email already exists"});
         } else {
-            return db.sequelize.transaction(function(t) {
+            return db.sequelize.transaction(function(t) {//transaction used for rollback
                 return db.User.create(req.body, {
                     transaction : t,
                 }).then(function(userInserted){
