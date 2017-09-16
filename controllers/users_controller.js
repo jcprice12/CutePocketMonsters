@@ -94,7 +94,7 @@ var getMostRecent = function(userId){
     var query = "";
     query += "SELECT *";
     query += " FROM UserPokemon";
-    query += " INNER JOIN POKEMON ON pokemonNumber = Number";
+    query += " INNER JOIN `Pokemon` ON pokemonNumber = Number";
     query += " WHERE userId = :userId";
     query += " ORDER BY createdAt DESC";
     query += " LIMIT 6";
@@ -111,9 +111,9 @@ var getMostRecent = function(userId){
 router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     var query = "";
     query += "SELECT t3.id, t3.username, t3.email, count(*) as numberOfSimilarPokemon";
-    query += " FROM userpokemon AS t1";
-    query += " INNER JOIN (SELECT  pokemonNumber FROM userPokemon WHERE userId = :userId) AS t2 ON t1.pokemonNumber = t2.pokemonNumber";
-    query += " INNER JOIN users AS t3 ON t1.userId = t3.id";
+    query += " FROM `UserPokemon` AS t1";
+    query += " INNER JOIN (SELECT  pokemonNumber FROM `UserPokemon` WHERE userId = :userId) AS t2 ON t1.pokemonNumber = t2.pokemonNumber";
+    query += " INNER JOIN `Users` AS t3 ON t1.userId = t3.id";
     query += " WHERE t1.userId <> :userId";
     query += " GROUP BY userId";
     query += " ORDER BY numberOfSimilarPokemon DESC";
@@ -235,8 +235,8 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          }     
          var promises = [];
          var userId = req.params.id;
-         console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-         console.error(userId);
+         console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+         console.log(userId);
          var getStartersPromise = getStarters(userId);
          var getNonStartersPromise = getNonStarters(userId);
          var getMostRecentPromise = getMostRecent(userId);
@@ -245,14 +245,14 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          promises.push(getMostRecentPromise)
          Promise.all(promises).then(function(result){
              var userStarters = result[0];
-             console.error("******************************************");
-             console.error(userStarters);
+             console.log("******************************************");
+             console.log(userStarters);
              var userNonStarters = result[1];
-             console.error("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-             console.error(userNonStarters);
+             console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+             console.log(userNonStarters);
              var userMostRecent = result[2];
-             console.error("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-             console.error(userMostRecent);
+             console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+             console.log(userMostRecent);
              var hbsObject = {
                 "sessionUser" : req.user,
                 "userStarters": userStarters,
@@ -261,7 +261,8 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
              }
              res.render("backpack", hbsObject);
          }).catch( function(err){
-             console.error(err);
+             console.log("Error while getting user information");
+             console.log(err);
              res.status(500).send("Error on the server while getting your information. Please try again later.");
          });
     } else {
