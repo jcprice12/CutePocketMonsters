@@ -99,7 +99,8 @@ router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     }).then(function(data){
         var hbsObject = {
             sessionUser : req.user,
-            similarTrainers : data
+            similarTrainers : data,
+            lookupSimilar : "true"
         };
         res.render("allUsers", hbsObject);
     });
