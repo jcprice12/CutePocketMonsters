@@ -5,6 +5,7 @@ var surveyHelper = require("../utilities/surveyHelper.js");
 // Import models
 var db = require("../models");
 
+//route to get the survey page
 router.get("/survey", serverFile.checkUser, function(req, res) {
     var hbsObject = {
         "sessionUser" : req.user,
@@ -12,14 +13,14 @@ router.get("/survey", serverFile.checkUser, function(req, res) {
     res.render("survey", hbsObject);
 });
 
+//route to post the survey data
+//will query the Pokemon table with the given array of values from the form
 router.post("/survey", serverFile.checkUser, function(req, res) {
     var qValArr = req.body.arr
-    var whereCond = surveyHelper.compileQuery(qValArr);
-    console.log("Test: " + JSON.stringify(whereCond, null, 2));
+    var whereCond = surveyHelper.compileQuery(qValArr);//generates a where condition for sequelize
 
     db.Pokemon.findAll(whereCond)
     .then(function(pokemonSet){
-        //console.log(pokemonSet);
         var counter = 0;
         var myPokemon = [];
         var tempIndex;
@@ -40,11 +41,9 @@ router.post("/survey", serverFile.checkUser, function(req, res) {
             }
         }
         //  BULK CREATE GOES HERE
-        console.log(myPokemon);
         db.UserPokemon.bulkCreate(myPokemon, {
             ignoreDuplicates: true,
         }).then(function(data){
-            console.log(data);
             res.send({
                 redirect : ("/users/" + req.user.dataValues.id),
             });

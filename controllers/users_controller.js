@@ -6,6 +6,11 @@ var password_hash = require("password-hash");
 // Import models
 var db = require("../models");
 
+/**
+ * hashes a password given and returns a hashed string with a 16 bit salt attached to it
+ * @param {string} pass
+ * @return {string}
+ */
 function hashPassword(pass){
     var hash = password_hash.generate(pass, {
         algorithm : 'sha256',
@@ -14,6 +19,11 @@ function hashPassword(pass){
     return hash;
 }
 
+/**
+ * Gets one user for an id and returns all pokemon associated with it
+ * @param {number} userId 
+ * @return {promise}
+ */
 var getUserAndPokemon = function(userId){
     var promise = db.User.findOne({
         where : {
@@ -29,6 +39,11 @@ var getUserAndPokemon = function(userId){
     return promise;
 }
 
+/**
+ * Gets one user and attaches all of that users starters
+ * @param {number} userId 
+ * @return {promise}
+ */
 var getStarters = function(userId){
     var promise = db.User.findOne({
         where : {
@@ -47,6 +62,11 @@ var getStarters = function(userId){
     return promise;
 }
 
+/**
+ * Gets one user and all of the associated non-starters
+ * @param {number} userId 
+ * @return {promise}
+ */
 var getNonStarters = function(userId){
     var promise = db.User.findOne({
         where : {
@@ -65,6 +85,11 @@ var getNonStarters = function(userId){
     return promise;
 }
 
+/**
+ * Gets the 6 most recent pokemon created in the UserPokemon table for the user id given 
+ * @param {number} userId 
+ * @return {promise}
+ */
 var getMostRecent = function(userId){
     var query = "";
     query += "SELECT *";
@@ -82,6 +107,7 @@ var getMostRecent = function(userId){
     return promise;
 }
 
+//route for similar users to the id of the user given
 router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     var query = "";
     query += "SELECT t3.id, t3.username, t3.email, count(*) as numberOfSimilarPokemon";
@@ -106,6 +132,7 @@ router.get("/users/similar/:id", serverFile.checkUser, function(req, res){
     });
 });
 
+//route to get the edit user page
 router.get("/users/edit", serverFile.checkUser, function(req, res){
     getUserAndPokemon(req.user.dataValues.id).then(function(userPokemon){
         var hbsObject = {
@@ -116,6 +143,8 @@ router.get("/users/edit", serverFile.checkUser, function(req, res){
     });
 });
 
+//route to edit the user (put data)
+//put is handled with a transaction to allow rollback
 router.put("/users/edit", serverFile.checkUser, function(req, res){
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if(!re.test(req.body.email)){
@@ -216,14 +245,12 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
              var userStarters = result[0];
              var userNonStarters = result[1];
              var userMostRecent = result[2];
-             console.log(userMostRecent)
              var hbsObject = {
                 "sessionUser" : req.user,
                 "userStarters": userStarters,
                 "userNonStarters" : userNonStarters,
                 "userMostRecent" : userMostRecent
              }
-             console.log(hbsObject);
              res.render("backpack", hbsObject);
          }).catch( function(err){
              res.status(500).send("Error on the server while getting your information. Please try again later.");
