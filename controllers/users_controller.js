@@ -93,7 +93,7 @@ var getNonStarters = function(userId){
 var getMostRecent = function(userId){
     var query = "";
     query += "SELECT *";
-    query += " FROM UserPokemon";
+    query += " FROM `UserPokemon`";
     query += " INNER JOIN `Pokemon` ON pokemonNumber = Number";
     query += " WHERE userId = :userId";
     query += " ORDER BY createdAt DESC";
@@ -235,8 +235,6 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          }     
          var promises = [];
          var userId = req.params.id;
-         console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-         console.log(userId);
          var getStartersPromise = getStarters(userId);
          var getNonStartersPromise = getNonStarters(userId);
          var getMostRecentPromise = getMostRecent(userId);
@@ -245,14 +243,8 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          promises.push(getMostRecentPromise)
          Promise.all(promises).then(function(result){
              var userStarters = result[0];
-             console.log("******************************************");
-             console.log(userStarters);
              var userNonStarters = result[1];
-             console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
-             console.log(userNonStarters);
              var userMostRecent = result[2];
-             console.log("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
-             console.log(userMostRecent);
              var hbsObject = {
                 "sessionUser" : req.user,
                 "userStarters": userStarters,
