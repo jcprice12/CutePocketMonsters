@@ -62,14 +62,6 @@ module.exports = function(fileName){
             }
             
             var myJSON = JSON.stringify(seeds);
-            var outputFile = Date.now() +  "_" + path.parse(fileName).name + ".json";
-            fs.writeFile(path.join(__dirname, "output", outputFile), myJSON, 'utf8', function (err) {
-                if (err) {
-                    console.log(err);
-                    reject(err);
-                }
-                console.log("The file was saved!");
-            }); 
         }
         resolve(seeds);
     });
