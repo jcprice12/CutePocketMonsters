@@ -235,6 +235,8 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          }     
          var promises = [];
          var userId = req.params.id;
+         console.error("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+         console.error(userId);
          var getStartersPromise = getStarters(userId);
          var getNonStartersPromise = getNonStarters(userId);
          var getMostRecentPromise = getMostRecent(userId);
@@ -243,8 +245,14 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
          promises.push(getMostRecentPromise)
          Promise.all(promises).then(function(result){
              var userStarters = result[0];
+             console.error("******************************************");
+             console.error(userStarters);
              var userNonStarters = result[1];
+             console.error("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+             console.error(userNonStarters);
              var userMostRecent = result[2];
+             console.error("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+             console.error(userMostRecent);
              var hbsObject = {
                 "sessionUser" : req.user,
                 "userStarters": userStarters,
@@ -253,6 +261,7 @@ router.get("/users/:id?", serverFile.checkUser, function(req, res, next) {
              }
              res.render("backpack", hbsObject);
          }).catch( function(err){
+             console.error(err);
              res.status(500).send("Error on the server while getting your information. Please try again later.");
          });
     } else {
