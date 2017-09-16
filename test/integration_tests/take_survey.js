@@ -30,7 +30,7 @@ nightmare
     .wait(500)
     .click("#qr8-1")
     .wait(500)
-    .click("i")
+    .click("#surveySubmit")
     .wait(5000)
     .end()
     .then(function(result){
