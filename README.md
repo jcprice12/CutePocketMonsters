@@ -3,7 +3,7 @@ Assemble your perfect team of weird pets
 
 Deployed on heroku at: [Check Me Out!](https://cute-pocket-monsters.herokuapp.com/)
 
-###Technologies Used
+## Technologies Used
 * Bootstrap
 * MySQL
 * Sequelize
